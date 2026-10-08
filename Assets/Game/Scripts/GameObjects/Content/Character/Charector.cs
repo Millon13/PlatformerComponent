@@ -26,6 +26,8 @@ public class Charector : MonoBehaviour
   {
       _moveTransformComponent.CanMove=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
       _jumpComponent.CanJump=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
+      _tossComponent.CanToss=_healthComponent.IsAlive&&_groundedComponent.IsGrounded&&!_pushComponent.CanPush;;
+      _pushComponent.CanPush=_healthComponent.IsAlive&&_groundedComponent.IsGrounded&&!_tossComponent.CanToss;;
   }
 
 

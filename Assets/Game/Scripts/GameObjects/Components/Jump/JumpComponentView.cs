@@ -6,11 +6,13 @@ namespace Game
 
     {
         [SerializeField] private JumpComponent _jumpComponent;
-
         [SerializeField] private Animator _animator;
+        [SerializeField] AudioSource _audioSource;
+        [SerializeField] private AudioClip _jumpSound;
         private void Awake()
         {
-            _jumpComponent = GetComponent<JumpComponent>();
+            if (_jumpComponent == null)
+                _jumpComponent = GetComponent<JumpComponent>();
         }
         private void OnEnable()
         {
@@ -27,6 +29,7 @@ namespace Game
         private void OnJump(bool isJump)
         {
             _animator.SetBool("Jump",isJump);
+            _audioSource.PlayOneShot(_jumpSound);
         }
     
     }

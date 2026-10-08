@@ -13,6 +13,7 @@ namespace Game
         public bool IsDied => CurrentHealth <= 0;
 
         public event Action<float> OnHealthChanged;
+        public event Action OnTakedDamage;
         public event Action OnDied;
 
         private void Awake()
@@ -27,6 +28,7 @@ namespace Game
 
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
             OnHealthChanged?.Invoke(CurrentHealth);
+            OnTakedDamage?.Invoke();
 
             if (CurrentHealth <= 0)
                 OnDied?.Invoke();
