@@ -29,23 +29,6 @@ namespace Game
                 _rigidbody2D.AddForceY(force, ForceMode2D.Impulse);
         }
 
-        /*private void Update()
-        {
-           CanJump = Time.time >= _nextJumpTime;
-            if (Input.GetKey(KeyCode.Space)&&CanJump)
-            {
-
-                Jump(force);
-                OnJump?.Invoke(true);
-                _nextJumpTime = Time.time + cooldown;
-            }
-            else
-            {
-                OnJump?.Invoke(false);
-            }
-        }*/
-       
-
         private void Update()
         {
             CanJump = Time.time >= _nextJumpTime && !_isPreparingJump;

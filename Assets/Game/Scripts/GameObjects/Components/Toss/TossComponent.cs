@@ -7,7 +7,7 @@ namespace Game
     public class TossComponent: MonoBehaviour
     {
         [SerializeField] private KeyCode TossButton = KeyCode.Mouse0;
-        [SerializeField] Rigidbody2D _rigidbody2D;
+        private Rigidbody2D _rigidbody2D;
         public bool CanToss;
         private float _nextTossTime = 0f;
         private bool _isPreparingToss = false;
@@ -17,37 +17,52 @@ namespace Game
         
         [SerializeField] float _forceX=10f;
         [SerializeField] float _forceY=2f;
+        
         public Action<bool> OnToss;
-        public void Toss(float forceX,float forceY)
+        public Action<bool> OnCollideOther;
+        public void Toss(float forceX,float forceY,Rigidbody2D rigidbody2D)
         {
             if (forceX != 0)
                 _rigidbody2D.AddForceY(forceX, ForceMode2D.Impulse);
             if (forceY != 0)
                 _rigidbody2D.AddForceY(forceY, ForceMode2D.Impulse);
+            return;
         }
         
         private void Update()
         {
             CanToss = Time.time >= _nextTossTime && !_isPreparingToss;
-    
             if (Input.GetKey(TossButton) && CanToss)
             {
-                StartCoroutine(TossWithDelay());
+                StartCoroutine(TossWithDelay(_rigidbody2D));
             }
             else if (!Input.GetKey(TossButton))
             {
                 OnToss?.Invoke(false);
             }
         }
+        
 
-        private IEnumerator TossWithDelay()
+        private void OnEntered(Collision2D other)
+        {
+            
+            if (CanToss && Input.GetKey(TossButton))
+            {
+                 _rigidbody2D=other.gameObject.GetComponent<Rigidbody2D>();
+                 Toss(_forceX, _forceY, _rigidbody2D);
+            }
+           
+        }
+
+        private IEnumerator TossWithDelay(Rigidbody2D rigidbody2D)
         {
             _isPreparingToss = true;
             yield return new WaitForSeconds(delay);
-            Toss(_forceX,_forceX);
-            OnToss?.Invoke(true);
+            OnToss?.Invoke(true);  
             _nextTossTime = Time.time + cooldown;
             _isPreparingToss = false;
+
+        
         }
         
     }
