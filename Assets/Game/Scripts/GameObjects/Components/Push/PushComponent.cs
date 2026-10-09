@@ -6,6 +6,7 @@ namespace Game
 {
     public class PushComponent: MonoBehaviour
     {
+        [SerializeField] private TriggerComponent _pushTrigger;
         [SerializeField] private KeyCode PushButton = KeyCode.Mouse1;
         private Rigidbody2D _rigidbody2D;
         public bool CanPush;
@@ -37,13 +38,19 @@ namespace Game
             }
         }
 
-        private void OnEntered(Collision2D other)
+     
+        private void OnEnable() => _pushTrigger.OnEntered += this.OnTriggerEntered;
+
+        private void OnDisable() => _pushTrigger.OnEntered -= this.OnTriggerEntered;
+
+        private void OnTriggerEntered(Collider2D other)
         {
             if (CanPush && Input.GetKey(PushButton))
             {
-                _rigidbody2D=other.gameObject.GetComponent<Rigidbody2D>();
+                _rigidbody2D = other.gameObject.GetComponent<Rigidbody2D>();
                 Push(_forceX, _forceY, _rigidbody2D);
             }
+
         }
 
         private IEnumerator PushWithDelay(Rigidbody2D rigidbody2D)

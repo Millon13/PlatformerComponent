@@ -6,6 +6,7 @@ namespace Game
 {
     public class TossComponent: MonoBehaviour
     {
+        [SerializeField] private TriggerComponent _tossTrigger;
         [SerializeField] private KeyCode TossButton = KeyCode.Mouse0;
         private Rigidbody2D _rigidbody2D;
         public bool CanToss;
@@ -42,16 +43,17 @@ namespace Game
             }
         }
         
+        private void OnEnable() => _tossTrigger.OnEntered += this.OnTriggerEntered;
 
-        private void OnEntered(Collision2D other)
+        private void OnDisable() => _tossTrigger.OnEntered -= this.OnTriggerEntered;
+
+        private void OnTriggerEntered(Collider2D other)
         {
-            
             if (CanToss && Input.GetKey(TossButton))
             {
-                 _rigidbody2D=other.gameObject.GetComponent<Rigidbody2D>();
-                 Toss(_forceX, _forceY, _rigidbody2D);
+                _rigidbody2D=other.gameObject.GetComponent<Rigidbody2D>();
+                Toss(_forceX, _forceY, _rigidbody2D);
             }
-           
         }
 
         private IEnumerator TossWithDelay(Rigidbody2D rigidbody2D)
@@ -61,8 +63,6 @@ namespace Game
             OnToss?.Invoke(true);  
             _nextTossTime = Time.time + cooldown;
             _isPreparingToss = false;
-
-        
         }
         
     }
