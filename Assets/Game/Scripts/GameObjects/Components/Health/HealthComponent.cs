@@ -36,5 +36,22 @@ namespace Game
 
         public void SetZero() => 
             this.TakeDamage(this.CurrentHealth);
+
+
+        private void OnEnable()
+        {
+            this.OnDied += Died;
+        }
+
+        private void OnDisable()
+        {
+            this.OnDied = Died;
+        }
+
+        private void Died()
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 }

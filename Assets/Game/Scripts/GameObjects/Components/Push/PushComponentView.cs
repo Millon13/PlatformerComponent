@@ -27,7 +27,7 @@ namespace Game
 
         private void OnPush(bool isPushed)
         {
-            _animator.SetBool("BlowForward",isPushed);
+            _animator.SetBool("BlowUp",isPushed);
             _audioSource.PlayOneShot(_pushSound);
         }
     }

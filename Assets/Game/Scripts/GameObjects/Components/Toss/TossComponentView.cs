@@ -27,7 +27,7 @@ namespace Game
 
         private void OnToss(bool isTossed)
         {
-            _animator.SetBool("BlowUp",isTossed);
+            _animator.SetBool("BlowForward",isTossed);
             _audioSource.PlayOneShot(_tossSound);
         }
     }

@@ -23,7 +23,41 @@ namespace Game
         public bool CanJump;
 
         private bool _isPreparingJump = false;
-        public void Jump(float force)
+        private bool _wasButtonHeld = false;
+        private void Update()
+        {
+            CanJump = Time.time >= _nextJumpTime
+                      && !_isPreparingJump;
+
+            bool held = Input.GetKey(JumpButton);
+
+
+            if (held && !_wasButtonHeld && CanJump)
+            {
+                StartCoroutine(JumpWithDelay());
+            }
+            if (held != _wasButtonHeld)
+                OnJump?.Invoke(held);
+
+            _wasButtonHeld = held;
+        }
+
+        private IEnumerator JumpWithDelay()
+        {
+            _isPreparingJump = true;
+            yield return new WaitForSeconds(delay);
+
+            Jump(force);
+            _nextJumpTime = Time.time + cooldown;
+            _isPreparingJump = false;
+        }
+
+        public void Jump(float f)
+        {
+            if (f != 0 && _rigidbody2D != null)
+                _rigidbody2D.AddForceY(f, ForceMode2D.Impulse);
+        }
+       /* public void Jump(float force)
         {
             if (force != 0)
                 _rigidbody2D.AddForceY(force, ForceMode2D.Impulse);
@@ -51,7 +85,7 @@ namespace Game
             OnJump?.Invoke(true);
             _nextJumpTime = Time.time + cooldown;
             _isPreparingJump = false;
-        }
+        }*/
 
     }
 }

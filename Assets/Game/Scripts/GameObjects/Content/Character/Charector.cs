@@ -22,7 +22,7 @@ public class Charector : MonoBehaviour
       _jumpComponent = GetComponent<JumpComponent>();
   }
 
-  private void FixedUpdate()
+  private void Update()
   {
       _moveTransformComponent.CanMove=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
       _jumpComponent.CanJump=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;

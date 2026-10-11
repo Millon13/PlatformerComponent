@@ -20,47 +20,63 @@ namespace Game
         [SerializeField] float _forceY=2f;
         
         public Action<bool> OnToss;
-        public Action<bool> OnCollideOther;
-        public void Toss(float forceX,float forceY,Rigidbody2D rigidbody2D)
-        {
-            if (forceX != 0)
-                _rigidbody2D.AddForceY(forceX, ForceMode2D.Impulse);
-            if (forceY != 0)
-                _rigidbody2D.AddForceY(forceY, ForceMode2D.Impulse);
-            return;
-        }
-        
-        private void Update()
-        {
-            CanToss = Time.time >= _nextTossTime && !_isPreparingToss;
-            if (Input.GetKey(TossButton) && CanToss)
-            {
-                StartCoroutine(TossWithDelay(_rigidbody2D));
-            }
-            else if (!Input.GetKey(TossButton))
-            {
-                OnToss?.Invoke(false);
-            }
-        }
-        
-        private void OnEnable() => _tossTrigger.OnEntered += this.OnTriggerEntered;
+        private Rigidbody2D _targetBody;
+        private bool _wasButtonHeld = false;
 
-        private void OnDisable() => _tossTrigger.OnEntered -= this.OnTriggerEntered;
+        public void Toss(float forceX, float forceY, Rigidbody2D rb)
+        {
+            if (rb == null) return;
+            if (forceX != 0) rb.AddForceX(forceX, ForceMode2D.Impulse);
+            if (forceY != 0) rb.AddForceY(forceY, ForceMode2D.Impulse);
+        }
+
+        private void OnEnable()
+        {
+            _tossTrigger.OnEntered += OnTriggerEntered;
+            _tossTrigger.OnExited  += OnTriggerExited;
+        }
+
+        private void OnDisable()
+        {
+            _tossTrigger.OnEntered -= OnTriggerEntered;
+            _tossTrigger.OnExited  -= OnTriggerExited;
+        }
 
         private void OnTriggerEntered(Collider2D other)
         {
-            if (CanToss && Input.GetKey(TossButton))
-            {
-                _rigidbody2D=other.gameObject.GetComponent<Rigidbody2D>();
-                Toss(_forceX, _forceY, _rigidbody2D);
-            }
+            if (other.attachedRigidbody != null)
+                _targetBody = other.attachedRigidbody;
         }
 
-        private IEnumerator TossWithDelay(Rigidbody2D rigidbody2D)
+        private void OnTriggerExited(Collider2D other)
+        {
+            if (_targetBody != null && other.attachedRigidbody == _targetBody)
+                _targetBody = null;
+        }
+
+        private void Update()
+        {
+            CanToss = Time.time >= _nextTossTime && !_isPreparingToss;
+
+            bool held = Input.GetKey(TossButton);
+
+            if (held && !_wasButtonHeld && CanToss && _targetBody != null)
+            {
+                StartCoroutine(TossWithDelay(_targetBody));
+            }
+            if (held != _wasButtonHeld)
+                OnToss?.Invoke(held);
+
+            _wasButtonHeld = held;
+        }
+
+        private IEnumerator TossWithDelay(Rigidbody2D rb)
         {
             _isPreparingToss = true;
             yield return new WaitForSeconds(delay);
-            OnToss?.Invoke(true);  
+
+            if (rb != null) Toss(_forceX, _forceY, rb);
+
             _nextTossTime = Time.time + cooldown;
             _isPreparingToss = false;
         }

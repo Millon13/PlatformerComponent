@@ -17,50 +17,68 @@ namespace Game
         [SerializeField] float _forceX=1f;
         [SerializeField] float _forceY=10f;
         public Action<bool> OnPush;
-        public void Push(float forceX,float forceY,Rigidbody2D rigidbody2D)
+        private Rigidbody2D _targetBody;
+        private bool _wasButtonHeld = false;
+
+        public void Push(float forceX, float forceY, Rigidbody2D rb)
         {
-            if (_forceX != 0&&_rigidbody2D!=null)
-                rigidbody2D.AddForceY(_forceX, ForceMode2D.Impulse);
-            if (_forceY != 0&&_rigidbody2D!=null)
-                rigidbody2D.AddForceY(_forceY, ForceMode2D.Impulse);
-            return;
-        }
-        private void Update()
-        {
-            CanPush = Time.time >= _nextPushTime && !_isPreparingPush;
-            if (Input.GetKey(PushButton) && CanPush)
-            {
-                StartCoroutine(PushWithDelay(_rigidbody2D));
-            }
-            else if (!Input.GetKey(PushButton))
-            {
-                OnPush?.Invoke(false);
-            }
+            if (rb == null) return;
+            if (forceX != 0) rb.AddForceX(forceX, ForceMode2D.Impulse);
+            if (forceY != 0) rb.AddForceY(forceY, ForceMode2D.Impulse);
         }
 
-     
-        private void OnEnable() => _pushTrigger.OnEntered += this.OnTriggerEntered;
+        private void OnEnable()
+        {
+            _pushTrigger.OnEntered += OnTriggerEntered;
+            _pushTrigger.OnExited  += OnTriggerExited;
+        }
 
-        private void OnDisable() => _pushTrigger.OnEntered -= this.OnTriggerEntered;
+        private void OnDisable()
+        {
+            _pushTrigger.OnEntered -= OnTriggerEntered;
+            _pushTrigger.OnExited  -= OnTriggerExited;
+        }
 
         private void OnTriggerEntered(Collider2D other)
         {
-            if (CanPush && Input.GetKey(PushButton))
-            {
-                _rigidbody2D = other.gameObject.GetComponent<Rigidbody2D>();
-                Push(_forceX, _forceY, _rigidbody2D);
-            }
-
+            if (other.attachedRigidbody != null)
+                _targetBody = other.attachedRigidbody;
         }
 
-        private IEnumerator PushWithDelay(Rigidbody2D rigidbody2D)
+        private void OnTriggerExited(Collider2D other)
+        {
+            if (_targetBody != null && other.attachedRigidbody == _targetBody)
+                _targetBody = null;
+        }
+
+        private void Update()
+        {
+            CanPush = Time.time >= _nextPushTime && !_isPreparingPush;
+
+            bool held = Input.GetKey(PushButton);
+
+            if (held && !_wasButtonHeld && CanPush && _targetBody != null)
+            {
+                StartCoroutine(PushWithDelay(_targetBody));
+            }
+            if (held != _wasButtonHeld)
+                OnPush?.Invoke(held);
+
+            _wasButtonHeld = held;
+        }
+
+        private IEnumerator PushWithDelay(Rigidbody2D rb)
         {
             _isPreparingPush = true;
             yield return new WaitForSeconds(delay);
-            Push(_forceX,_forceX,rigidbody2D);
-            OnPush?.Invoke(true);
+
+            if (rb != null) Push(_forceX, _forceY, rb);
+
             _nextPushTime = Time.time + cooldown;
             _isPreparingPush = false;
         }
+
+    
+     
     }
 }
