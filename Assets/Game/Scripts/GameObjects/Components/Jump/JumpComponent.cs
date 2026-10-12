@@ -21,6 +21,7 @@ namespace Game
         private float _nextJumpTime = 0f;
         
         public bool CanJump;
+        [SerializeField] private bool isPlayerCharecter;
 
         private bool _isPreparingJump = false;
         private bool _wasButtonHeld = false;
@@ -29,18 +30,28 @@ namespace Game
             CanJump = Time.time >= _nextJumpTime
                       && !_isPreparingJump;
 
-            bool held = Input.GetKey(JumpButton);
+            if (isPlayerCharecter&&JumpButton!=KeyCode.None)
+            {
+                bool held = Input.GetKey(JumpButton);
 
 
-            if (held && !_wasButtonHeld && CanJump)
+                if (held && !_wasButtonHeld && CanJump)
+                {
+                    StartCoroutine(JumpWithDelay());
+                }
+
+                if (held != _wasButtonHeld)
+                    OnJump?.Invoke(held);
+
+                _wasButtonHeld = held;
+            }
+            else
             {
                 StartCoroutine(JumpWithDelay());
             }
-            if (held != _wasButtonHeld)
-                OnJump?.Invoke(held);
 
-            _wasButtonHeld = held;
         }
+        
 
         private IEnumerator JumpWithDelay()
         {
@@ -57,35 +68,6 @@ namespace Game
             if (f != 0 && _rigidbody2D != null)
                 _rigidbody2D.AddForceY(f, ForceMode2D.Impulse);
         }
-       /* public void Jump(float force)
-        {
-            if (force != 0)
-                _rigidbody2D.AddForceY(force, ForceMode2D.Impulse);
-        }
-
-        private void Update()
-        {
-            CanJump = Time.time >= _nextJumpTime && !_isPreparingJump;
-    
-            if (Input.GetKey(JumpButton) && CanJump)
-            {
-                StartCoroutine(JumpWithDelay());
-            }
-            else if (!Input.GetKey(JumpButton))
-            {
-                OnJump?.Invoke(false);
-            }
-        }
-
-        private IEnumerator JumpWithDelay()
-        {
-            _isPreparingJump = true;
-            yield return new WaitForSeconds(delay);
-            Jump(force);
-            OnJump?.Invoke(true);
-            _nextJumpTime = Time.time + cooldown;
-            _isPreparingJump = false;
-        }*/
 
     }
 }

@@ -43499,7 +43499,34 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2084178272520813888, guid: cb9ed3dbabd7c4827b086fe7f369d772, type: 3}
       insertIndex: -1
       addedObject: {fileID: 472368188}
+    - targetCorrespondingSourceObject: {fileID: 2084178272520813888, guid: cb9ed3dbabd7c4827b086fe7f369d772, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2443794580711597796}
   m_SourcePrefab: {fileID: 100100000, guid: cb9ed3dbabd7c4827b086fe7f369d772, type: 3}
+--- !u!50 &2443794580711597795 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4964224926931193953, guid: cb9ed3dbabd7c4827b086fe7f369d772, type: 3}
+  m_PrefabInstance: {fileID: 2443794580711597794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2443794580711597796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338392149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475aee36c0414e54889e3d254ddbad9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.JumpComponent
+  JumpButton: 32
+  force: 300
+  _rigidbody2D: {fileID: 2443794580711597795}
+  cooldown: 0.25
+  delay: 0.05
+  CanJump: 0
+  isPlayerCharecter: 0
 --- !u!1001 &3102363328515959864
 PrefabInstance:
   m_ObjectHideFlags: 0
