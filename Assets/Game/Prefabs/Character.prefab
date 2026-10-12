@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2743180993930163208}
   - component: {fileID: 4375523871547856432}
   - component: {fileID: 9080652144006767103}
-  - component: {fileID: 5535772569152897893}
   - component: {fileID: 5144272096096051705}
   - component: {fileID: 1719028982101205173}
   - component: {fileID: 4196675964050138522}
@@ -157,35 +156,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.2542764}
   m_Radius: 0.2457236
---- !u!114 &5535772569152897893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3322474405303096178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd33a49152ca44bb95cb119eec8c021f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.TakeDamageColorComponent
-  _renderers:
-  - {fileID: 5204512148407797940}
-  - {fileID: 6219465262073202451}
-  - {fileID: 4422273307610976513}
-  - {fileID: 5250541445880393635}
-  - {fileID: 7160067175672817982}
-  - {fileID: 8684640795848953031}
-  - {fileID: 4299039019413998630}
-  - {fileID: 9165277386506390966}
-  - {fileID: 8595995141096377094}
-  - {fileID: 807937440565741875}
-  - {fileID: 5047525534465335295}
-  - {fileID: 3741408736114512392}
-  - {fileID: 2948770426114850387}
-  _damagedColor: {r: 1, g: 0, b: 0, a: 1}
-  _frequency: 0.2
-  _loops: 3
 --- !u!114 &5144272096096051705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +304,7 @@ MonoBehaviour:
   _healthComponent: {fileID: 5144272096096051705}
   _audioSource: {fileID: 8589338179893557342}
   _damageSound: {fileID: 8300000, guid: 32f565ba94f200f49adb407cce64e873, type: 3}
-  _damageColorComponent: {fileID: 5535772569152897893}
+  _damageColorComponent: {fileID: 0}
 --- !u!114 &6589248880650086059
 MonoBehaviour:
   m_ObjectHideFlags: 0

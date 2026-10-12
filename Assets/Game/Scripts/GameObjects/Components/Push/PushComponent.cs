@@ -19,6 +19,7 @@ namespace Game
         public Action<bool> OnPush;
         private Rigidbody2D _targetBody;
         private bool _wasButtonHeld = false;
+        [SerializeField] private bool isPlayerCharecter;
 
         public void Push(float forceX, float forceY, Rigidbody2D rb)
         {
@@ -55,16 +56,25 @@ namespace Game
         {
             CanPush = Time.time >= _nextPushTime && !_isPreparingPush;
 
-            bool held = Input.GetKey(PushButton);
+            if (PushButton != KeyCode.None&&isPlayerCharecter)
+            {
+                bool held = Input.GetKey(PushButton);
 
-            if (held && !_wasButtonHeld && CanPush && _targetBody != null)
+                if (held && !_wasButtonHeld && CanPush && _targetBody != null)
+                {
+                    StartCoroutine(PushWithDelay(_targetBody));
+                }
+
+                if (held != _wasButtonHeld)
+                    OnPush?.Invoke(held);
+
+                _wasButtonHeld = held;
+            }
+            else
             {
                 StartCoroutine(PushWithDelay(_targetBody));
             }
-            if (held != _wasButtonHeld)
-                OnPush?.Invoke(held);
 
-            _wasButtonHeld = held;
         }
 
         private IEnumerator PushWithDelay(Rigidbody2D rb)

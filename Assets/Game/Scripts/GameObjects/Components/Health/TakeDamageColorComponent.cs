@@ -47,7 +47,7 @@ namespace Game
             Color color = Color.Lerp(_baseColor, _damagedColor, _blend);
 
             foreach (var r in _renderers)
-                r.color = new Color(color.r, color.g, color.b, r.color.a);;
+                r.color = new Color(color.r, color.g, color.b,1f);;
         }
 
         private void OnDisable()
