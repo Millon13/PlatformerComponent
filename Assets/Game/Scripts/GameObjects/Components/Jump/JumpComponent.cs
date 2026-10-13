@@ -25,9 +25,11 @@ namespace Game
 
         private bool _isPreparingJump = false;
         private bool _wasButtonHeld = false;
-        private void Update()
+        private void FixedUpdate()
         {
-            CanJump = Time.time >= _nextJumpTime
+            if (!CanJump) return;
+            if (_isPreparingJump) return;
+            bool isJumping = Time.time >= _nextJumpTime
                       && !_isPreparingJump;
 
             if (isPlayerCharecter&&JumpButton!=KeyCode.None)
@@ -35,19 +37,17 @@ namespace Game
                 bool held = Input.GetKey(JumpButton);
 
 
-                if (held && !_wasButtonHeld && CanJump)
+                if (held && !_wasButtonHeld && isJumping)
                 {
                     StartCoroutine(JumpWithDelay());
                 }
-
-                if (held != _wasButtonHeld)
-                    OnJump?.Invoke(held);
 
                 _wasButtonHeld = held;
             }
             else
             {
-                StartCoroutine(JumpWithDelay());
+                Jump(force);
+                _nextJumpTime = Time.time + cooldown;
             }
 
         }
@@ -55,18 +55,25 @@ namespace Game
 
         private IEnumerator JumpWithDelay()
         {
+            
             _isPreparingJump = true;
             yield return new WaitForSeconds(delay);
+            if (CanJump)
+            {
+                Jump(force);
+                _nextJumpTime = Time.time + cooldown;
+            }
 
-            Jump(force);
-            _nextJumpTime = Time.time + cooldown;
             _isPreparingJump = false;
         }
 
         public void Jump(float f)
         {
-            if (f != 0 && _rigidbody2D != null)
-                _rigidbody2D.AddForceY(f, ForceMode2D.Impulse);
+            OnJump?.Invoke(true); 
+            if (f == 0 || _rigidbody2D == null) return;
+            if (!CanJump) return;  
+            _rigidbody2D.AddForceY(f, ForceMode2D.Impulse);
+           
         }
 
     }

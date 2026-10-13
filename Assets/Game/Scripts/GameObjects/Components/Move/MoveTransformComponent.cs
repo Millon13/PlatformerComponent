@@ -12,8 +12,8 @@ namespace Game
 
         [SerializeField] private KeyCode rightInput;
         [SerializeField] private KeyCode leftInput;
-        
-        private LookComponent _lookComponent;
+        [SerializeField] private Rigidbody2D _rb;
+        [SerializeField] private LookComponent _lookComponent;
 
         public Action<bool> OnMove;
         private void Awake()
@@ -24,10 +24,13 @@ namespace Game
         public void Move(Vector2 direction)
         {
             if (direction != Vector2.zero) 
-                this.transform.Translate((Vector3) direction * _speed * Time.fixedDeltaTime);
+                _rb.linearVelocity = new Vector2(direction.x * _speed, _rb.linearVelocity.y);
+            else
+                _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
+          
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (CanMove)
             {
@@ -42,7 +45,7 @@ namespace Game
                     else if (Input.GetKey(leftInput))
                     {
                          _lookComponent.Look(-1);
-                         Move(-Vector2.left);
+                         Move(Vector2.left);
                     }
                 }
                 else

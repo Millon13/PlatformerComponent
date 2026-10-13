@@ -1,17 +1,13 @@
 using Game;
 using UnityEngine;
-[RequireComponent(typeof(HealthComponent), typeof(JumpComponent),typeof(GroundedComponent))]
-[RequireComponent(typeof(MoveTransformComponent), typeof(PushComponent),typeof(TossComponent))]
 public class Charector : MonoBehaviour
-{
-    
-  private HealthComponent _healthComponent;
-  private TakeDamageColorComponent _takeDamageColorComponent;
+{ [SerializeField]private HealthComponent _healthComponent;
+  [SerializeField]private TakeDamageColorComponent _takeDamageColorComponent;
   private MoveTransformComponent _moveTransformComponent;
-  private   GroundedComponent _groundedComponent;
-  private PushComponent _pushComponent;
-  private TossComponent _tossComponent;
-  private JumpComponent _jumpComponent;
+  [SerializeField] private   GroundedComponent _groundedComponent;
+  [SerializeField]private PushComponent _pushComponent;
+  [SerializeField] private TossComponent _tossComponent;
+  [SerializeField]private JumpComponent _jumpComponent;
 
   private void Awake()
   {
@@ -22,9 +18,9 @@ public class Charector : MonoBehaviour
       _jumpComponent = GetComponent<JumpComponent>();
   }
 
-  private void Update()
+  private void  FixedUpdate()
   {
-      _moveTransformComponent.CanMove=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
+      _moveTransformComponent.CanMove=_healthComponent.IsAlive;
       _jumpComponent.CanJump=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
       _tossComponent.CanToss=_healthComponent.IsAlive&&_groundedComponent.IsGrounded&&!_pushComponent.CanPush;;
       _pushComponent.CanPush=_healthComponent.IsAlive&&_groundedComponent.IsGrounded&&!_tossComponent.CanToss;;

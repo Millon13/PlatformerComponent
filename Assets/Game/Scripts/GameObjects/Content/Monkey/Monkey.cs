@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class Monkey : MonoBehaviour
 {
-    private HealthComponent _healthComponent;
-    private TakeDamageColorComponent _takeDamageColorComponent;
-    private LookComponent  _lookComponent;
+    [SerializeField] private Transform _charectorTransform;
+    [SerializeField] private HealthComponent _healthComponent;
+    [SerializeField]private TakeDamageColorComponent _takeDamageColorComponent;
+    [SerializeField]private LookComponent  _lookComponent;
+    [SerializeField] private PushComponent _pushComponent;
+    [SerializeField] private JumpComponent _jumpComponent;
+    [SerializeField] private GroundedComponent _groundedComponent;
 
     private void Awake()
     {
@@ -17,5 +21,8 @@ public class Monkey : MonoBehaviour
     private void FixedUpdate()
     {
         
+        _jumpComponent.CanJump=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
+        _pushComponent.CanPush = _healthComponent.IsAlive && _groundedComponent.IsGrounded;
+        _lookComponent.Look(_charectorTransform);
     }
 }

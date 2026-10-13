@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 2633385569113066965}
   - component: {fileID: 6719577170494163410}
   - component: {fileID: 5260951541908912669}
-  - component: {fileID: 7259978913568737928}
   - component: {fileID: 33126397927928969}
   - component: {fileID: 7785913482404715276}
   - component: {fileID: 2878448744355872618}
@@ -168,7 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7246bdb0d9af44fa945f8bed8138ba95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthComponent
+  _healthTrigger: {fileID: 0}
   _maxHealth: 0
+  _damage: 1
 --- !u!114 &1719028982101205173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +185,8 @@ MonoBehaviour:
   _speed: 4.5
   rightInput: 275
   leftInput: 276
+  _rb: {fileID: 0}
+  _lookComponent: {fileID: 0}
   CanMove: 1
 --- !u!114 &4196675964050138522
 MonoBehaviour:
@@ -242,19 +245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.GroundedComponentView
   _groundedComponent: {fileID: 6719577170494163410}
   _animator: {fileID: 5219259647563851570}
---- !u!114 &7259978913568737928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3322474405303096178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e9c6873c214b3e9c13ab1f9fb92d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ExtraGravityComponent
-  _gravity: -7
 --- !u!114 &33126397927928969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +263,7 @@ MonoBehaviour:
   cooldown: 1
   delay: 1
   CanJump: 0
+  isPlayerCharecter: 0
 --- !u!114 &7785913482404715276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +350,7 @@ MonoBehaviour:
   delay: 0.15
   _forceX: 1
   _forceY: 10
+  isPlayerCharecter: 0
 --- !u!114 &6762458342282619480
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ namespace Game
 {
     public class PushComponent: MonoBehaviour
     {
-        [SerializeField] private TriggerComponent _pushTrigger;
+       [SerializeField] private TriggerComponent _pushTrigger;
         [SerializeField] private KeyCode PushButton = KeyCode.Mouse1;
         private Rigidbody2D _rigidbody2D;
         public bool CanPush;
@@ -87,8 +87,45 @@ namespace Game
             _nextPushTime = Time.time + cooldown;
             _isPreparingPush = false;
         }
+ /*
+     [SerializeField] private TriggerComponent _pushTrigger;
 
-    
-     
+       [SerializeField] protected KeyCode InputButton = KeyCode.None;
+       private Rigidbody2D _targetBody;
+
+       public Action<bool> OnPush;
+
+       public bool CanPush;
+       
+      
+
+       private void OnEnable()
+       {
+           _pushTrigger.OnEntered += OnTriggerEntered;
+           _pushTrigger.OnExited  += OnTriggerExited;
+       }
+
+       private void OnDisable()
+       {
+           _pushTrigger.OnEntered -= OnTriggerEntered;
+           _pushTrigger.OnExited  -= OnTriggerExited;
+       }
+
+       private void OnTriggerEntered(Collider2D other)
+       {
+           if (other.attachedRigidbody != null)
+               _targetBody = other.attachedRigidbody;
+           OnPush?.Invoke(true);
+       }
+
+       private void OnTriggerExited(Collider2D other)
+       {
+           if (_targetBody != null && other.attachedRigidbody == _targetBody)
+               _targetBody = null;
+           OnPush?.Invoke(false);
+       }
+
+       protected  Rigidbody2D GetTarget() => _targetBody;
+     */
     }
 }

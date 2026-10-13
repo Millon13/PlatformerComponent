@@ -27,8 +27,9 @@ namespace Game
         }
 
         private void OnJump(bool isJump)
-        {
-            _animator.SetBool("Jump",isJump);
+        { 
+            if (!isJump) return; 
+            _animator.SetTrigger("Jump");
             _audioSource.PlayOneShot(_jumpSound);
         }
     

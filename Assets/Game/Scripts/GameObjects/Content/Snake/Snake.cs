@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    private HealthComponent _healthComponent;
-    private TakeDamageColorComponent _takeDamageColorComponent;
-    private LookComponent  _lookComponent;
+    [SerializeField] private Transform _charectorTransform;
+    [SerializeField] private Collider2D _followingActivateCollider;
+    [SerializeField] private HealthComponent _healthComponent;
+    [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
+    [SerializeField] private LookComponent  _lookComponent;
 
+    [SerializeField] private MoveTransformComponent _moveComponent;
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
@@ -16,6 +19,7 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        _moveComponent.Move(_charectorTransform.position);
+        _lookComponent.Look(_charectorTransform);
     }
 }
