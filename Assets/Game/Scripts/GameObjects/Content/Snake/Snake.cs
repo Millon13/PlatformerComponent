@@ -19,7 +19,16 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _moveComponent.Move(_charectorTransform.position);
         _lookComponent.Look(_charectorTransform);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other==_followingActivateCollider)
+        {
+            _moveComponent.Move(_charectorTransform.position);
+        }
+    }
+    
+    
 }

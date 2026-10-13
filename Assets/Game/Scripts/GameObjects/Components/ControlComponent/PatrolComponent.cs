@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game
 {
@@ -10,6 +11,7 @@ namespace Game
         [SerializeField] private float _speed = 2f;
         [SerializeField] private float _reachDistance = 0.1f;
 
+        public Action<bool> OnPatrol;
         public bool CanPatrol;
         private Transform _currentTarget;
         
@@ -24,7 +26,11 @@ namespace Game
         private void Update()
         {
             if (CanPatrol)
+            {
+                OnPatrol?.Invoke(true);
                 Patrol();
+                
+            }
         }
 
         private void Patrol()
@@ -43,6 +49,7 @@ namespace Game
             {
                 _currentTarget = _currentTarget == _point1 ? _point2 : _point1;
             }
+            
         }
 
     }
