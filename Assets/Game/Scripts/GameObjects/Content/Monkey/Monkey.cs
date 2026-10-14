@@ -23,6 +23,7 @@ public class Monkey : MonoBehaviour
         
         _jumpComponent.CanJump=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
         _pushComponent.CanPush = _healthComponent.IsAlive && _groundedComponent.IsGrounded;
-        _lookComponent.Look(_charectorTransform);
+        if (_healthComponent.IsAlive&&_charectorTransform != null)
+            _lookComponent.Look(_charectorTransform);
     }
 }

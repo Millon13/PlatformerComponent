@@ -1,3 +1,4 @@
+using Sirenix.Reflection.Editor;
 using UnityEngine;
 
 namespace Game
@@ -15,7 +16,7 @@ namespace Game
         {
             HealthComponent health = col.GetComponentInParent<HealthComponent>();
             if (health != null)
-                health.SetZero();
+                health.TakeDamage(health.CurrentHealth);
         }
     }
 }

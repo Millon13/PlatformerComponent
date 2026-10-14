@@ -22,7 +22,8 @@ public class Snake : MonoBehaviour
     {
         _patrolComponent.CanPatrol=_healthComponent.IsAlive;
         _pushComponent.CanPush=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;;
-        _lookComponent.Look(_charectorTransform);
+        if (_healthComponent.IsAlive&& _charectorTransform != null)
+            _lookComponent.Look(_charectorTransform);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

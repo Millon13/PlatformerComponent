@@ -23,6 +23,11 @@ namespace Game
             CurrentHealth = _maxHealth;
         }
 
+        private void Update()
+        {
+            if (CurrentHealth <= 0)
+                OnDied?.Invoke();
+        }
         public void TakeDamage(float damage)
         {
             if (!IsAlive || damage <= 0)
@@ -36,19 +41,23 @@ namespace Game
             if (CurrentHealth <= 0)
                 OnDied?.Invoke();
         }
-        
-
-        public void SetZero() => 
-            this.TakeDamage(this.CurrentHealth);
 
         
         private void OnTriggerEntered(Collider2D other)
-        {
-            if (other.TryGetComponent(out HealthComponent damageable))
+        {  
+             if(other.TryGetComponent(out HealthComponent damageable)) ;
             {
                 damageable.TakeDamage(_damage);
             }
 
+        }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            HealthComponent damageable = collision.collider.GetComponentInParent<HealthComponent>();
+            if (damageable == null || damageable == this)
+                return;
+
+            damageable.TakeDamage(_damage);
         }
 
         private void OnEnable()
