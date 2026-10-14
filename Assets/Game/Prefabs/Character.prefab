@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4375523871547856432}
   - component: {fileID: 9080652144006767103}
   - component: {fileID: 5144272096096051705}
+  - component: {fileID: 2878448744355872618}
   - component: {fileID: 1719028982101205173}
   - component: {fileID: 4196675964050138522}
   - component: {fileID: 2633385569113066965}
@@ -20,7 +21,6 @@ GameObject:
   - component: {fileID: 5260951541908912669}
   - component: {fileID: 33126397927928969}
   - component: {fileID: 7785913482404715276}
-  - component: {fileID: 2878448744355872618}
   - component: {fileID: 6589248880650086059}
   - component: {fileID: 2801586922722704559}
   - component: {fileID: 3374554513602286780}
@@ -168,8 +168,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthComponent
   _healthTrigger: {fileID: 0}
-  _maxHealth: 0
+  _maxHealth: 5
   _damage: 1
+--- !u!114 &2878448744355872618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3322474405303096178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c45d3de85594badba6e125fc5805fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthComponentView
+  _healthComponent: {fileID: 5144272096096051705}
+  _audioSource: {fileID: 8589338179893557342}
+  _damageSound: {fileID: 8300000, guid: 32f565ba94f200f49adb407cce64e873, type: 3}
+  _damageColorComponent: {fileID: 0}
 --- !u!114 &1719028982101205173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,22 +296,6 @@ MonoBehaviour:
   _animator: {fileID: 5219259647563851570}
   _audioSource: {fileID: 8589338179893557342}
   _jumpSound: {fileID: 8300000, guid: 4a3d24c7a7d02497a9aa7b0018822e35, type: 3}
---- !u!114 &2878448744355872618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3322474405303096178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c45d3de85594badba6e125fc5805fc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthComponentView
-  _healthComponent: {fileID: 5144272096096051705}
-  _audioSource: {fileID: 8589338179893557342}
-  _damageSound: {fileID: 8300000, guid: 32f565ba94f200f49adb407cce64e873, type: 3}
-  _damageColorComponent: {fileID: 0}
 --- !u!114 &6589248880650086059
 MonoBehaviour:
   m_ObjectHideFlags: 0

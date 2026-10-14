@@ -23,19 +23,22 @@ namespace Game
             _moveTransform.position = _point1.position;
             _currentTarget = _point2;
         }
-        private void Update()
+        private void FixedUpdate()
         {
             if (CanPatrol)
             {
                 OnPatrol?.Invoke(true);
                 Patrol();
-                
+            }
+            else
+            {
+                OnPatrol?.Invoke(false);
             }
         }
 
         private void Patrol()
         {
-            
+            OnPatrol?.Invoke(true);
             if (_currentTarget == null || _moveTransform == null) return;
 
             Vector3 newPos = Vector3.MoveTowards(

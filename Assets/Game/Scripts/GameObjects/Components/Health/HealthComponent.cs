@@ -55,19 +55,13 @@ namespace Game
         private void OnEnable()
         {
             _healthTrigger.OnEntered += OnTriggerEntered;
-            this.OnDied += Died;
         }
 
         private void OnDisable()
         {
             _healthTrigger.OnEntered -= OnTriggerEntered;
-            this.OnDied -= Died;
         }
 
-        private void Died()
-        {
-            Destroy(this.gameObject);
-        }
         
     }
 }

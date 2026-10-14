@@ -18,14 +18,24 @@ namespace Game
 
         private void OnEnable()
         {
+            
             _healthComponent.OnTakedDamage += OnTakeDamage;
             _healthComponent.OnTakedDamage += _damageColorComponent.TakeDamage;
+            _healthComponent.OnDied += _damageColorComponent.TakeDamage;
+            _healthComponent.OnDied += OnDied;
+            
+            
             
         }
         private void OnDisable()
         {
+            
             _healthComponent.OnTakedDamage -= OnTakeDamage;
             _healthComponent.OnTakedDamage -= _damageColorComponent.TakeDamage;
+             _healthComponent.OnDied -= _damageColorComponent.TakeDamage;
+             _healthComponent.OnDied -= OnDied;
+           
+            
         }
 
         private void OnTakeDamage()
@@ -34,6 +44,11 @@ namespace Game
             {
                 _audioSource.PlayOneShot(_damageSound);
             }
+        }
+
+        private void OnDied()
+        {
+            Destroy(this.gameObject);
         }
     }
 }
