@@ -28,7 +28,7 @@ namespace Game
             if (CanPatrol)
             {
                 OnPatrol?.Invoke(true);
-                Patrol();
+                Patrol(_currentTarget);
             }
             else
             {
@@ -36,18 +36,19 @@ namespace Game
             }
         }
 
-        private void Patrol()
+        public void Patrol(Transform target)
         {
             OnPatrol?.Invoke(true);
-            if (_currentTarget == null || _moveTransform == null) return;
+            if (target == null || _moveTransform == null) return;
 
+            _currentTarget = target; 
             Vector3 newPos = Vector3.MoveTowards(
                 _moveTransform.position,
                 _currentTarget.position,
                 _speed * Time.deltaTime
             );
-
             _moveTransform.position = newPos;
+
             if (newPos == _currentTarget.position)
             {
                 _currentTarget = _currentTarget == _point1 ? _point2 : _point1;

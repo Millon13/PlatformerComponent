@@ -8,8 +8,9 @@ public class Snake : MonoBehaviour
     [SerializeField] private HealthComponent _healthComponent;
     [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
     [SerializeField] private LookComponent  _lookComponent;
-
-    [SerializeField] private MoveTransformComponent _moveComponent;
+    [SerializeField] private GroundedComponent _groundedComponent;
+    [SerializeField] private PatrolComponent _patrolComponent;
+    [SerializeField] private PushComponent _pushComponent;
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
@@ -19,6 +20,8 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _patrolComponent.CanPatrol=_healthComponent.IsAlive;
+        _pushComponent.CanPush=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;;
         _lookComponent.Look(_charectorTransform);
     }
 
@@ -26,7 +29,7 @@ public class Snake : MonoBehaviour
     {
         if (other==_followingActivateCollider)
         {
-            _moveComponent.Move(_charectorTransform.position);
+            _patrolComponent.Patrol(_charectorTransform);
         }
     }
     

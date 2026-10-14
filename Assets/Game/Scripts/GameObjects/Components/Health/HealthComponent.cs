@@ -47,7 +47,6 @@ namespace Game
             if (other.TryGetComponent(out HealthComponent damageable))
             {
                 damageable.TakeDamage(_damage);
-
             }
 
         }
