@@ -8,8 +8,7 @@ namespace Game
         [SerializeField] private Transform _moveTransform;
         [SerializeField] private Transform _point1;
         [SerializeField] private Transform _point2;
-        [SerializeField] private float _speed = 2f;
-        [SerializeField] private float _reachDistance = 0.1f;
+        [SerializeField] private float _speed = 2f; 
 
         public Action<bool> OnPatrol;
         public bool CanPatrol;

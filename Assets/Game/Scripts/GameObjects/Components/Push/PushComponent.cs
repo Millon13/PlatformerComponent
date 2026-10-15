@@ -81,12 +81,22 @@ namespace Game
         {
             _isPreparingPush = true;
             yield return new WaitForSeconds(delay);
-
-            if (rb != null) Push(_forceX, _forceY, rb);
-
+            
+           if (rb != null)
+           {
+               float dir = GetPushDirectionX(rb);
+               Push(Mathf.Abs(_forceX) * dir, _forceY, rb);
+           }
             _nextPushTime = Time.time + cooldown;
             _isPreparingPush = false;
         }
- 
+
+        private float GetPushDirectionX(Rigidbody2D rb)
+        {
+            if (rb == null) return 0f;
+            float diff = rb.position.x - transform.position.x;
+            return Mathf.Sign(diff);
+        }
     }
+  
 }

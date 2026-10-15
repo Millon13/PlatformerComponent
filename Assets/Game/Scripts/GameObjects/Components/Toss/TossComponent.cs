@@ -69,13 +69,21 @@ namespace Game
 
             _wasButtonHeld = held;
         }
-
+        private float GetTossDirectionX(Rigidbody2D rb)
+        {
+            if (rb == null) return 0f;
+            float diff = rb.position.x - transform.position.x;
+            return Mathf.Sign(diff);
+        }
         private IEnumerator TossWithDelay(Rigidbody2D rb)
         {
             _isPreparingToss = true;
             yield return new WaitForSeconds(delay);
-
-            if (rb != null) Toss(_forceX, _forceY, rb);
+           if (rb != null)
+           {
+               float dir = GetTossDirectionX(rb);
+               Toss(Mathf.Abs(_forceX) * dir, _forceY, rb);
+           }
 
             _nextTossTime = Time.time + cooldown;
             _isPreparingToss = false;

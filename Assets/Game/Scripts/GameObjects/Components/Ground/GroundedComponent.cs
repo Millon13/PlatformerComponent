@@ -41,7 +41,7 @@ namespace Game
             }
             else
             {
-                _ground = _isGrounded ? hit.transform : null;
+                return;
             }
         }
 

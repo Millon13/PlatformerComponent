@@ -45,10 +45,10 @@ namespace Game
         
         private void OnTriggerEntered(Collider2D other)
         {  
-             if(other.TryGetComponent(out HealthComponent damageable)) ;
-            {
-                damageable.TakeDamage(_damage);
-            }
+             if(other.TryGetComponent(out HealthComponent damageable)) 
+             {
+                 damageable.TakeDamage(_damage);
+             }
 
         }
         private void OnCollisionEnter2D(Collision2D collision)
