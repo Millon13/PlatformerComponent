@@ -4,8 +4,7 @@ namespace Game
 {
     public sealed class LavaView : MonoBehaviour
     {
-        [SerializeField]
-        private AudioSource _audioSource;
+        [SerializeField] private AudioSource _audioSource;
 
         private TriggerComponent _triggerComponent;
 

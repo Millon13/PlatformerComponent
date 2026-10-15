@@ -5,8 +5,8 @@ public class Monkey : MonoBehaviour
 {
     [SerializeField] private Transform _charectorTransform;
     [SerializeField] private HealthComponent _healthComponent;
-    [SerializeField]private TakeDamageColorComponent _takeDamageColorComponent;
-    [SerializeField]private LookComponent  _lookComponent;
+    [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
+    [SerializeField] private LookComponent _lookComponent;
     [SerializeField] private PushComponent _pushComponent;
     [SerializeField] private JumpComponent _jumpComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
@@ -20,10 +20,10 @@ public class Monkey : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        _jumpComponent.CanJump=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;
-        _pushComponent.CanPush = _healthComponent.IsAlive && _groundedComponent.IsGrounded;
-        if (_healthComponent.IsAlive&&_charectorTransform != null)
+        _jumpComponent.CanJump = _healthComponent.IsAlive && _groundedComponent.IsGrounded;
+        _pushComponent.CanPush =
+            _healthComponent.IsAlive && _groundedComponent.IsGrounded && _jumpComponent.CanEarthQuake;
+        if (_healthComponent.IsAlive && _charectorTransform != null)
             _lookComponent.Look(_charectorTransform);
     }
 }

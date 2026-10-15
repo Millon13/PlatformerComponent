@@ -8,26 +8,22 @@ namespace Game
     public sealed class GroundedComponent : MonoBehaviour
     {
         public event Action<bool> OnGrounded;
-        
-        [SerializeField]
-        private Transform _feet;
 
-        [SerializeField]
-        private LayerMask _layerMask;
-        
-        [SerializeField]
-        private float _groundDistance = 0.15f;
-        
-        [ShowInInspector, ReadOnly]
-        private Transform _ground;
-        
+        [SerializeField] private Transform _feet;
+
+        [SerializeField] private LayerMask _layerMask;
+
+        [SerializeField] private float _groundDistance = 0.15f;
+
+        [ShowInInspector, ReadOnly] private Transform _ground;
+
         [ShowInInspector, ReadOnly, HideInEditorMode]
         private bool _isGrounded;
 
         public Transform Ground => _ground;
-        
+
         public bool IsGrounded => _isGrounded;
-        
+
         private void FixedUpdate()
         {
             RaycastHit2D hit = Physics2D.Raycast(_feet.position, Vector2.down, _groundDistance, _layerMask);

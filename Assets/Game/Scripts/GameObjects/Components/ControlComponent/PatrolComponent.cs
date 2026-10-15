@@ -3,17 +3,22 @@ using UnityEngine;
 
 namespace Game
 {
-    public class PatrolComponent:MonoBehaviour
+    public class PatrolComponent : MonoBehaviour
     {
         [SerializeField] private Transform _moveTransform;
+        
         [SerializeField] private Transform _point1;
+        
         [SerializeField] private Transform _point2;
-        [SerializeField] private float _speed = 2f; 
+        
+        [SerializeField] private float _speed = 2f;
 
         public Action<bool> OnPatrol;
-        public bool CanPatrol;
-        private Transform _currentTarget;
         
+        public bool CanPatrol;
+        
+        private Transform _currentTarget;
+
         private void Awake()
         {
             if (_moveTransform == null || _point1 == null || _point2 == null)
@@ -22,6 +27,7 @@ namespace Game
             _moveTransform.position = _point1.position;
             _currentTarget = _point2;
         }
+
         private void FixedUpdate()
         {
             if (CanPatrol)
@@ -40,7 +46,7 @@ namespace Game
             OnPatrol?.Invoke(true);
             if (target == null || _moveTransform == null) return;
 
-            _currentTarget = target; 
+            _currentTarget = target;
             Vector3 newPos = Vector3.MoveTowards(
                 _moveTransform.position,
                 _currentTarget.position,
@@ -52,8 +58,6 @@ namespace Game
             {
                 _currentTarget = _currentTarget == _point1 ? _point2 : _point1;
             }
-            
         }
-
     }
 }

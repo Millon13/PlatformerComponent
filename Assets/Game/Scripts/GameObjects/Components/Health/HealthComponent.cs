@@ -5,9 +5,9 @@ namespace Game
 {
     public sealed class HealthComponent : MonoBehaviour
     {
-        [SerializeField] private TriggerComponent _healthTrigger;
-        [SerializeField]
-        private float _maxHealth;
+        [SerializeField] private CollisionComponent _healthCollision;
+        
+        [SerializeField] private float _maxHealth;
 
         public float CurrentHealth { get; private set; }
         public bool IsAlive => CurrentHealth > 0;
@@ -18,6 +18,7 @@ namespace Game
         public event Action OnDied;
 
         [SerializeField] private float _damage = 1f;
+
         private void Awake()
         {
             CurrentHealth = _maxHealth;
@@ -28,6 +29,7 @@ namespace Game
             if (CurrentHealth <= 0)
                 OnDied?.Invoke();
         }
+
         public void TakeDamage(float damage)
         {
             if (!IsAlive || damage <= 0)
@@ -39,18 +41,13 @@ namespace Game
             OnTakedDamage?.Invoke();
 
             if (CurrentHealth <= 0)
+            {
+                OnTakedDamage?.Invoke();
                 OnDied?.Invoke();
+            }
         }
 
-        
-        private void OnTriggerEntered(Collider2D other)
-        {  
-             if(other.TryGetComponent(out HealthComponent damageable)) 
-             {
-                 damageable.TakeDamage(_damage);
-             }
 
-        }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             HealthComponent damageable = collision.collider.GetComponentInParent<HealthComponent>();
@@ -62,14 +59,12 @@ namespace Game
 
         private void OnEnable()
         {
-            _healthTrigger.OnEntered += OnTriggerEntered;
+            _healthCollision.OnEntered += OnCollisionEnter2D;
         }
 
         private void OnDisable()
         {
-            _healthTrigger.OnEntered -= OnTriggerEntered;
+            _healthCollision.OnEntered -= OnCollisionEnter2D;
         }
-
-        
     }
 }

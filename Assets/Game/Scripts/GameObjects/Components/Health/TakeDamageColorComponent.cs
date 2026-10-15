@@ -5,21 +5,18 @@ namespace Game
 {
     public sealed class TakeDamageColorComponent : MonoBehaviour
     {
-        [SerializeField]
-        private SpriteRenderer[] _renderers;
+        [SerializeField] private SpriteRenderer[] _renderers;
 
-        [SerializeField]
-        private Color _damagedColor = Color.red;
+        [SerializeField] private Color _damagedColor = Color.red;
 
-        [SerializeField]
-        private float _frequency = 0.2f;
+        [SerializeField] private float _frequency = 0.2f;
 
-        [SerializeField]
-        private int _loops = 3;
-        
+        [SerializeField] private int _loops = 3;
+
         private Color _baseColor;
 
         private float _blend; // 0..1
+        
         private Tween _tween;
 
         private void Reset()
@@ -29,9 +26,9 @@ namespace Game
 
         private void Awake()
         {
-            _baseColor = _renderers is {Length: > 0} ? _renderers[0].color : Color.white;
+            _baseColor = _renderers is { Length: > 0 } ? _renderers[0].color : Color.white;
         }
-        
+
         public void TakeDamage()
         {
             _tween?.Kill();
@@ -47,7 +44,8 @@ namespace Game
             Color color = Color.Lerp(_baseColor, _damagedColor, _blend);
 
             foreach (var r in _renderers)
-                r.color = new Color(color.r, color.g, color.b,1f);;
+                r.color = new Color(color.r, color.g, color.b, 1f);
+            ;
         }
 
         private void OnDisable()

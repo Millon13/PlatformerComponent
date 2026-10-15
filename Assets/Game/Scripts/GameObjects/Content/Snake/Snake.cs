@@ -8,10 +8,12 @@ public class Snake : MonoBehaviour
     [SerializeField] private Collider2D _followingActivateCollider;
     [SerializeField] private HealthComponent _healthComponent;
     [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
-    [SerializeField] private LookComponent  _lookComponent;
+    [SerializeField] private LookComponent _lookComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
     [SerializeField] private PatrolComponent _patrolComponent;
-    [SerializeField] private PushComponent _pushComponent;
+    [SerializeField] private TossComponent _tossComponent;
+    private bool isTargetFollowing;
+
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
@@ -21,11 +23,12 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _patrolComponent.CanPatrol=_healthComponent.IsAlive;
-        _pushComponent.CanPush=_healthComponent.IsAlive&&_groundedComponent.IsGrounded;;
-        if (_healthComponent.IsAlive&& _charectorTransform != null)
+        _patrolComponent.CanPatrol = _healthComponent.IsAlive;
+        _tossComponent.CanToss = _healthComponent.IsAlive && _groundedComponent.IsGrounded && !isTargetFollowing;
+        if (_healthComponent.IsAlive && _charectorTransform != null)
             _lookComponent.Look(_charectorTransform);
     }
+
     private void OnEnable()
     {
         _agroTrigger.OnEntered += OnTriggerEntered;
@@ -38,11 +41,10 @@ public class Snake : MonoBehaviour
 
     private void OnTriggerEntered(Collider2D other)
     {
-        if (other==_followingActivateCollider)
+        if (other == _followingActivateCollider)
         {
-           _patrolComponent.Patrol(_charectorTransform);
+            _patrolComponent.Patrol(_charectorTransform);
+            isTargetFollowing = true;
         }
     }
-    
-    
 }

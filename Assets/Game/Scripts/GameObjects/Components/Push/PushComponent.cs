@@ -4,21 +4,34 @@ using UnityEngine;
 
 namespace Game
 {
-    public class PushComponent: MonoBehaviour
+    public class PushComponent : MonoBehaviour
     {
-       [SerializeField] private TriggerComponent _pushTrigger;
-        [SerializeField] private KeyCode PushButton = KeyCode.Mouse1;
+        [SerializeField] private TriggerComponent _pushTrigger;
+        
+        [SerializeField] private KeyCode PushButton = KeyCode.Mouse0;
+        
         private Rigidbody2D _rigidbody2D;
+        
         public bool CanPush;
+        
         private float _nextPushTime = 0f;
+        
         private bool _isPreparingPush = false;
+        
         [SerializeField] float cooldown = 0.35f;
+        
         [SerializeField] float delay = 0.15f;
-        [SerializeField] float _forceX=1f;
-        [SerializeField] float _forceY=10f;
+        
+        [SerializeField] float _forceX;
+        
+        [SerializeField] float _forceY;
+        
         public Action<bool> OnPush;
+        
         private Rigidbody2D _targetBody;
+        
         private bool _wasButtonHeld = false;
+        
         [SerializeField] private bool isPlayerCharecter;
 
         public void Push(float forceX, float forceY, Rigidbody2D rb)
@@ -31,13 +44,13 @@ namespace Game
         private void OnEnable()
         {
             _pushTrigger.OnEntered += OnTriggerEntered;
-            _pushTrigger.OnExited  += OnTriggerExited;
+            _pushTrigger.OnExited += OnTriggerExited;
         }
 
         private void OnDisable()
         {
             _pushTrigger.OnEntered -= OnTriggerEntered;
-            _pushTrigger.OnExited  -= OnTriggerExited;
+            _pushTrigger.OnExited -= OnTriggerExited;
         }
 
         private void OnTriggerEntered(Collider2D other)
@@ -56,7 +69,7 @@ namespace Game
         {
             CanPush = Time.time >= _nextPushTime && !_isPreparingPush;
 
-            if (PushButton != KeyCode.None&&isPlayerCharecter)
+            if (PushButton != KeyCode.None && isPlayerCharecter)
             {
                 bool held = Input.GetKey(PushButton);
 
@@ -74,19 +87,19 @@ namespace Game
             {
                 StartCoroutine(PushWithDelay(_targetBody));
             }
-
         }
 
         private IEnumerator PushWithDelay(Rigidbody2D rb)
         {
             _isPreparingPush = true;
             yield return new WaitForSeconds(delay);
-            
-           if (rb != null)
-           {
-               float dir = GetPushDirectionX(rb);
-               Push(Mathf.Abs(_forceX) * dir, _forceY, rb);
-           }
+
+            if (rb != null)
+            {
+                float dir = GetPushDirectionX(rb);
+                Push(Mathf.Abs(_forceX) * dir, _forceY, rb);
+            }
+
             _nextPushTime = Time.time + cooldown;
             _isPreparingPush = false;
         }
@@ -98,5 +111,4 @@ namespace Game
             return Mathf.Sign(diff);
         }
     }
-  
 }

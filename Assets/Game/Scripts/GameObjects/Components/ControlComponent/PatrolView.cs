@@ -2,9 +2,10 @@
 
 namespace Game
 {
-    public class PatrolView: MonoBehaviour
+    public class PatrolView : MonoBehaviour
     {
         [SerializeField] private PatrolComponent _patrolComponent;
+        
         [SerializeField] private Animator _animator;
 
         private void Awake()
@@ -16,20 +17,16 @@ namespace Game
         private void OnEnable()
         {
             _patrolComponent.OnPatrol += OnPatrol;
-          
-            
         }
+
         private void OnDisable()
         {
-            _patrolComponent.OnPatrol  -= OnPatrol;
-           
+            _patrolComponent.OnPatrol -= OnPatrol;
         }
 
         private void OnPatrol(bool IsPatrol)
         {
             _animator.SetBool("IsMoving", IsPatrol);
         }
-    
-        
     }
 }

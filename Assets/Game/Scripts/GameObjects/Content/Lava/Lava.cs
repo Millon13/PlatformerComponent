@@ -5,8 +5,7 @@ namespace Game
 {
     public sealed class Lava : MonoBehaviour
     {
-        [SerializeField]
-        private TriggerComponent _trigger;
+        [SerializeField] private TriggerComponent _trigger;
 
         private void OnEnable() => _trigger.OnEntered += this.OnTriggerEntered;
 

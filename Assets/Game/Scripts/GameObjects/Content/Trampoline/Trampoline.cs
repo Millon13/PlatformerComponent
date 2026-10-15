@@ -4,12 +4,10 @@ namespace Game
 {
     public sealed class Trampoline : MonoBehaviour
     {
-        [SerializeField]
-        private TriggerComponent _triggerComponent;
+        [SerializeField] private TriggerComponent _triggerComponent;
 
-        [SerializeField]
-        private Vector2 _force;
-        
+        [SerializeField] private Vector2 _force;
+
         private void OnEnable()
         {
             _triggerComponent.OnEntered += this.OnEntered;

@@ -7,15 +7,12 @@ namespace Game
     public sealed class TrampolineView : MonoBehaviour
     {
         private static readonly int ThrowUp = Animator.StringToHash(nameof(ThrowUp));
-      
-        [SerializeField]
-        private TriggerComponent _triggerComponent;
-        
-        [SerializeField]
-        private AudioSource _audioSource;
 
-        [SerializeField]
-        private Animator _animator;
+        [SerializeField] private TriggerComponent _triggerComponent;
+
+        [SerializeField] private AudioSource _audioSource;
+
+        [SerializeField] private Animator _animator;
 
         private Tween _tween;
 

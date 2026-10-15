@@ -7,32 +7,37 @@ namespace Game
     public class JumpComponent : MonoBehaviour
     {
         [SerializeField] private KeyCode JumpButton = KeyCode.Space;
-        
+
         [SerializeField] private float force = 12f;
-        
+
         [SerializeField] Rigidbody2D _rigidbody2D;
-        
+
         [SerializeField] float cooldown = 0.25f;
-        
+
         [SerializeField] float delay = 0.05f;
-        
+
         public Action<bool> OnJump;
-        
+
         private float _nextJumpTime = 0f;
-        
+
         public bool CanJump;
+
+        public bool CanEarthQuake;
+        
         [SerializeField] private bool isPlayerCharecter;
 
         private bool _isPreparingJump = false;
+        
         private bool _wasButtonHeld = false;
+
         private void FixedUpdate()
         {
             if (!CanJump) return;
             if (_isPreparingJump) return;
             bool isJumping = Time.time >= _nextJumpTime
-                      && !_isPreparingJump;
+                             && !_isPreparingJump;
 
-            if (isPlayerCharecter&&JumpButton!=KeyCode.None)
+            if (isPlayerCharecter && JumpButton != KeyCode.None)
             {
                 bool held = Input.GetKey(JumpButton);
 
@@ -46,16 +51,18 @@ namespace Game
             }
             else
             {
-                Jump(force);
-                _nextJumpTime = Time.time + cooldown;
+                if (isJumping)
+                {
+                    Jump(force);
+                    _nextJumpTime = Time.time + cooldown;
+                    CanEarthQuake = true;
+                }
             }
-
         }
-        
+
 
         private IEnumerator JumpWithDelay()
         {
-            
             _isPreparingJump = true;
             yield return new WaitForSeconds(delay);
             if (CanJump)
@@ -69,12 +76,10 @@ namespace Game
 
         public void Jump(float f)
         {
-            OnJump?.Invoke(true); 
+            OnJump?.Invoke(true);
             if (f == 0 || _rigidbody2D == null) return;
-            if (!CanJump) return;  
+            if (!CanJump) return;
             _rigidbody2D.AddForceY(f, ForceMode2D.Impulse);
-           
         }
-
     }
 }

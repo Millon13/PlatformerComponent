@@ -9,7 +9,7 @@ namespace Game
             Vector2 direction = target.position - this.transform.position;
             this.Look(direction.x);
         }
-        
+
         public void Look(float direction)
         {
             float angle = direction > 0 ? 0 : 180;

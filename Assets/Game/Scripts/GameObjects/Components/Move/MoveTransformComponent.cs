@@ -4,30 +4,35 @@ using UnityEngine;
 
 namespace Game
 
-{[RequireComponent(typeof(LookComponent))]
+{
+    [RequireComponent(typeof(LookComponent))]
     public sealed class MoveTransformComponent : MonoBehaviour
     {
-        [SerializeField]
-        private float _speed = 4.5f;
+        [SerializeField] private float _speed = 4.5f;
 
         [SerializeField] private KeyCode rightInput;
+        
         [SerializeField] private KeyCode leftInput;
+        
         [SerializeField] private Rigidbody2D _rb;
+        
         [SerializeField] private LookComponent _lookComponent;
 
         public Action<bool> OnMove;
+
         private void Awake()
         {
             _lookComponent = GetComponent<LookComponent>();
         }
+
         public bool CanMove;
+
         public void Move(Vector2 direction)
         {
-            if (direction != Vector2.zero) 
+            if (direction != Vector2.zero)
                 _rb.linearVelocity = new Vector2(direction.x * _speed, _rb.linearVelocity.y);
             else
                 _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
-          
         }
 
         private void FixedUpdate()
@@ -44,8 +49,8 @@ namespace Game
                     }
                     else if (Input.GetKey(leftInput))
                     {
-                         _lookComponent.Look(-1);
-                         Move(Vector2.left);
+                        _lookComponent.Look(-1);
+                        Move(Vector2.left);
                     }
                 }
                 else

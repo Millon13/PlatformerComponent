@@ -4,11 +4,10 @@ namespace Game
 {
     public sealed class StandingPlatformComponent : MonoBehaviour
     {
-        [SerializeField]
-        private GroundedComponent _groundedComponent;
+        [SerializeField] private GroundedComponent _groundedComponent;
 
         private Transform _currentGround;
-        
+
         private void FixedUpdate()
         {
             bool standing = _currentGround != null;

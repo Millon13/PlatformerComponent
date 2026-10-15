@@ -2,11 +2,12 @@
 
 namespace Game
 {
-    public class GroundedComponentView: MonoBehaviour
+    public class GroundedComponentView : MonoBehaviour
     {
         [SerializeField] private GroundedComponent _groundedComponent;
 
         [SerializeField] private Animator _animator;
+
         private void Awake()
         {
             _groundedComponent = GetComponent<GroundedComponent>();
@@ -14,12 +15,12 @@ namespace Game
 
         private void OnEnable()
         {
-            _groundedComponent.OnGrounded+=OnGrounded;
+            _groundedComponent.OnGrounded += OnGrounded;
         }
 
         private void OnDisable()
         {
-            _groundedComponent.OnGrounded-=OnGrounded;
+            _groundedComponent.OnGrounded -= OnGrounded;
         }
 
         private void OnGrounded(bool grounded)

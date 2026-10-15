@@ -5,10 +5,10 @@ namespace Game
     [RequireComponent(typeof(GroundedComponent), typeof(Rigidbody2D))]
     public sealed class ExtraGravityComponent : MonoBehaviour
     {
-        [SerializeField]
-        private float _gravity = -7f;
-        
+        [SerializeField] private float _gravity = -7f;
+
         private GroundedComponent _groundedComponent;
+        
         private Rigidbody2D _rigidbody;
 
         private void Awake()

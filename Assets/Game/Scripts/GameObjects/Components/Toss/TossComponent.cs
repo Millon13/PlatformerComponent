@@ -4,23 +4,32 @@ using UnityEngine;
 
 namespace Game
 {
-    public class TossComponent: MonoBehaviour
+    public class TossComponent : MonoBehaviour
     {
         [SerializeField] private TriggerComponent _tossTrigger;
-        [SerializeField] private KeyCode TossButton = KeyCode.Mouse0;
+        
+        [SerializeField] private KeyCode TossButton = KeyCode.Mouse1;
+        
         private Rigidbody2D _rigidbody2D;
+        
         public bool CanToss;
+        
         private float _nextTossTime = 0f;
+        
         private bool _isPreparingToss = false;
+        
         [SerializeField] float cooldown = 0.35f;
-        
+
         [SerializeField] float delay = 0.15f;
+
+        [SerializeField] float _forceX;
         
-        [SerializeField] float _forceX=10f;
-        [SerializeField] float _forceY=2f;
-        
+        [SerializeField] float _forceY;
+
         public Action<bool> OnToss;
+        
         private Rigidbody2D _targetBody;
+        
         private bool _wasButtonHeld = false;
 
         public void Toss(float forceX, float forceY, Rigidbody2D rb)
@@ -33,13 +42,13 @@ namespace Game
         private void OnEnable()
         {
             _tossTrigger.OnEntered += OnTriggerEntered;
-            _tossTrigger.OnExited  += OnTriggerExited;
+            _tossTrigger.OnExited += OnTriggerExited;
         }
 
         private void OnDisable()
         {
             _tossTrigger.OnEntered -= OnTriggerEntered;
-            _tossTrigger.OnExited  -= OnTriggerExited;
+            _tossTrigger.OnExited -= OnTriggerExited;
         }
 
         private void OnTriggerEntered(Collider2D other)
@@ -64,30 +73,32 @@ namespace Game
             {
                 StartCoroutine(TossWithDelay(_targetBody));
             }
+
             if (held != _wasButtonHeld)
                 OnToss?.Invoke(held);
 
             _wasButtonHeld = held;
         }
+
         private float GetTossDirectionX(Rigidbody2D rb)
         {
             if (rb == null) return 0f;
             float diff = rb.position.x - transform.position.x;
             return Mathf.Sign(diff);
         }
+
         private IEnumerator TossWithDelay(Rigidbody2D rb)
         {
             _isPreparingToss = true;
             yield return new WaitForSeconds(delay);
-           if (rb != null)
-           {
-               float dir = GetTossDirectionX(rb);
-               Toss(Mathf.Abs(_forceX) * dir, _forceY, rb);
-           }
+            if (rb != null)
+            {
+                float dir = GetTossDirectionX(rb);
+                Toss(Mathf.Abs(_forceX) * dir, _forceY, rb);
+            }
 
             _nextTossTime = Time.time + cooldown;
             _isPreparingToss = false;
         }
-        
     }
 }
