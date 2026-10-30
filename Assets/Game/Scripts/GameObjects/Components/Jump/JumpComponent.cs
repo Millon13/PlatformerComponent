@@ -39,7 +39,7 @@ namespace Game
 
             if (isPlayerCharecter && JumpButton != KeyCode.None)
             {
-                bool held = Input.GetKey(JumpButton);
+                bool held = UnityEngine.Input.GetKey(JumpButton);
 
 
                 if (held && !_wasButtonHeld && isJumping)

@@ -67,7 +67,7 @@ namespace Game
         {
             CanToss = Time.time >= _nextTossTime && !_isPreparingToss;
 
-            bool held = Input.GetKey(TossButton);
+            bool held = UnityEngine.Input.GetKey(TossButton);
 
             if (held && !_wasButtonHeld && CanToss && _targetBody != null)
             {

@@ -39,15 +39,15 @@ namespace Game
         {
             if (CanMove)
             {
-                if (Input.GetKey(rightInput) || Input.GetKey(leftInput))
+                if (UnityEngine.Input.GetKey(rightInput) || UnityEngine.Input.GetKey(leftInput))
                 {
                     OnMove?.Invoke(true);
-                    if (Input.GetKey(rightInput))
+                    if (UnityEngine.Input.GetKey(rightInput))
                     {
                         _lookComponent.Look(1);
                         Move(Vector2.right);
                     }
-                    else if (Input.GetKey(leftInput))
+                    else if (UnityEngine.Input.GetKey(leftInput))
                     {
                         _lookComponent.Look(-1);
                         Move(Vector2.left);

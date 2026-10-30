@@ -41,7 +41,7 @@ namespace Game.ImpulseComponent
 
     private void HandlePlayerInput()
     {
-        bool held = Input.GetKey(InputButton);
+        bool held = UnityEngine.Input.GetKey(InputButton);
 
         if (held && !_wasButtonHeld && CanExecute())
         {

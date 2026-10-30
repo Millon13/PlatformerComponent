@@ -71,7 +71,7 @@ namespace Game
 
             if (PushButton != KeyCode.None && isPlayerCharecter)
             {
-                bool held = Input.GetKey(PushButton);
+                bool held = UnityEngine.Input.GetKey(PushButton);
 
                 if (held && !_wasButtonHeld && CanPush && _targetBody != null)
                 {
