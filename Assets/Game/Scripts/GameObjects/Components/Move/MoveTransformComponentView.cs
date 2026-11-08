@@ -5,28 +5,33 @@ namespace Game
 {
     public class MoveTransformComponentView : MonoBehaviour
     {
-        [SerializeField] private MoveTransformComponent _moveTransformComponent;
+        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+        [SerializeField] private MoveRequestComponent _moveComponent;
 
         [SerializeField] private Animator _animator;
 
         private void Awake()
         {
-            _moveTransformComponent = GetComponent<MoveTransformComponent>();
+           // _moveTransformComponent = GetComponent<MoveTransformComponent>();
         }
 
         private void OnEnable()
         {
-            _moveTransformComponent.OnMove += OnMove;
+            _moveComponent.OnMoved += OnMove;
         }
 
         private void OnDisable()
         {
-            _moveTransformComponent.OnMove -= OnMove;
+            _moveComponent.OnMoved -= OnMove;
         }
 
-        private void OnMove(bool IsMove)
+        private void OnMove(Vector3  moveDirection)
         {
-            _animator.SetBool("IsMoving", IsMove);
+            if (moveDirection != Vector3.zero)
+            {
+                _animator.SetBool(IsMoving, _moveComponent.IsMoving);
+            }
+            
         }
     }
 }

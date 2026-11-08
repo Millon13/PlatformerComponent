@@ -15,5 +15,9 @@ namespace Game
             float angle = direction > 0 ? 0 : 180;
             this.transform.eulerAngles = new Vector3(0, angle, 0);
         }
+        public void Look(Vector3 direction)
+        {
+            this.Look(direction.x);
+        }
     }
 }

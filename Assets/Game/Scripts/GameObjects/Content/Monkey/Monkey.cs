@@ -20,10 +20,10 @@ public class Monkey : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _jumpComponent.CanJump = _healthComponent.IsAlive && _groundedComponent.IsGrounded;
-        _pushComponent.CanPush =
-            _healthComponent.IsAlive && _groundedComponent.IsGrounded && _jumpComponent.CanEarthQuake;
-        if (_healthComponent.IsAlive && _charectorTransform != null)
+        //_jumpComponent.CanJump = _healthComponent.IsAlive() && _groundedComponent.IsGrounded;
+   //     _pushComponent.CanPush =
+//_healthComponent.IsAlive() && _groundedComponent.IsGrounded && _jumpComponent.CanEarthQuake;
+        if (_healthComponent.IsAlive() && _charectorTransform != null)
             _lookComponent.Look(_charectorTransform);
     }
 }

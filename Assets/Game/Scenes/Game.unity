@@ -1672,38 +1672,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648890859}
-  - component: {fileID: 1648890858}
+  - component: {fileID: 1648890860}
+  - component: {fileID: 1648890861}
   m_Layer: 0
-  m_Name: Input
+  m_Name: PlayerInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1648890858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648890857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29ae758fb2e475c8ede44731435272f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.SystemInput
-  _actionProperty:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Action Property
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: b3ae984c-c031-4399-972f-7259c660b960
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 1698489163}
+  m_IsActive: 1
 --- !u!4 &1648890859
 Transform:
   m_ObjectHideFlags: 0
@@ -1719,20 +1696,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1698489163
+--- !u!114 &1648890860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1648890857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: Player/Move
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: ea1d1e3fdc906364eb5d7866c3cbe728, type: 3}
-  m_ActionId: 31625729-cdef-43bf-8112-28841b0aeffd
+  m_Script: {fileID: 11500000, guid: 244ad7b9c25449a28e654c2d92cc4a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Character.MoveInputController
+  _character: {fileID: 7542159812194644840}
+--- !u!114 &1648890861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648890857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa489511ca84fbbbf3a183c66eef84a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.JumpInputController
+  _character: {fileID: 7542159812194644840}
 --- !u!4 &1816226862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4979841302588641904, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
@@ -41323,7 +41312,7 @@ Tilemap:
       - {fileID: 21300000, guid: 67222f212dca84fa9958ecaa42ab7518, type: 3}
       - {fileID: 21300000, guid: 03e0cf4cb8ed84b25974b0816cc9ad3d, type: 3}
       - {fileID: 21300000, guid: dbe263ca7515249ec9a566aa5e2234f5, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 10, y: -3, z: 0}
@@ -41428,7 +41417,7 @@ Tilemap:
       - {fileID: 21300000, guid: 67222f212dca84fa9958ecaa42ab7518, type: 3}
       - {fileID: 21300000, guid: 03e0cf4cb8ed84b25974b0816cc9ad3d, type: 3}
       - {fileID: 21300000, guid: dbe263ca7515249ec9a566aa5e2234f5, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 37, y: -3, z: 0}
@@ -43611,7 +43600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6056f0d36184484bdc9f52c23910b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.JumpComponentView
-  _jumpComponent: {fileID: 1662313365694358940}
+  _jumpComponent: {fileID: 0}
   _animator: {fileID: 5400425539745950995}
   _audioSource: {fileID: 0}
   _jumpSound: {fileID: 0}
@@ -49867,14 +49856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475aee36c0414e54889e3d254ddbad9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.JumpComponent
-  JumpButton: 0
   force: 300
   _rigidbody2D: {fileID: 7281865940097660547}
-  cooldown: 5
-  delay: 0.3
-  CanJump: 1
-  CanEarthQuake: 0
-  isPlayerCharecter: 0
 --- !u!212 &1668976475971519277
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -58049,7 +58032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6056f0d36184484bdc9f52c23910b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.JumpComponentView
-  _jumpComponent: {fileID: 5099586561026233491}
+  _jumpComponent: {fileID: 0}
   _animator: {fileID: 1071406199073621800}
   _audioSource: {fileID: 3567865948159137860}
   _jumpSound: {fileID: 8300000, guid: 4a3d24c7a7d02497a9aa7b0018822e35, type: 3}
@@ -61686,10 +61669,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Charector
   _healthComponent: {fileID: 131957383646659043}
   _takeDamageColorComponent: {fileID: 8991474746247211088}
+  _jumpRequestComponent: {fileID: 0}
+  _moveRequestComponent: {fileID: 8974961780927055233}
+  _moveTransformComponent: {fileID: 5867022072869535919}
+  _lookComponent: {fileID: 8974961780927055232}
   _groundedComponent: {fileID: 2013202940249811400}
   _pushComponent: {fileID: 7522205235273086118}
   _tossComponent: {fileID: 2144091997180544689}
   _jumpComponent: {fileID: 5099586561026233491}
+  _impulseComponent: {fileID: 0}
 --- !u!114 &4986319647248835038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61806,14 +61794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475aee36c0414e54889e3d254ddbad9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.JumpComponent
-  JumpButton: 32
   force: 12
   _rigidbody2D: {fileID: 6962936837819257874}
-  cooldown: 0.25
-  delay: 0.05
-  CanJump: 0
-  CanEarthQuake: 0
-  isPlayerCharecter: 1
 --- !u!1 &5154962145440732816
 GameObject:
   m_ObjectHideFlags: 0
@@ -62843,12 +62825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _speed: 4.5
-  rightInput: 275
-  leftInput: 276
-  _rb: {fileID: 6962936837819257874}
-  _lookComponent: {fileID: 8974961780927055232}
-  CanMove: 0
+  _moveSpeed: 4.5
 --- !u!1 &5891192825772295221
 GameObject:
   m_ObjectHideFlags: 0
@@ -65076,7 +65053,7 @@ MonoBehaviour:
   _audioSource: {fileID: 3567865948159137860}
   _damageSound: {fileID: 8300000, guid: 32f565ba94f200f49adb407cce64e873, type: 3}
   _damageColorComponent: {fileID: 8991474746247211088}
-  _animator: {fileID: 0}
+  _animator: {fileID: 1071406199073621800}
 --- !u!4 &7029345266041933089
 Transform:
   m_ObjectHideFlags: 0
@@ -65170,7 +65147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48271d6bc5024b99a99384d06e2a3ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponentView
-  _moveTransformComponent: {fileID: 5867022072869535919}
+  _moveComponent: {fileID: 8974961780927055233}
   _animator: {fileID: 1071406199073621800}
 --- !u!1 &7083358518086258054
 GameObject:
@@ -68616,43 +68593,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7542159812194644840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 65cad170c47441b59df3b0f0c70bd101, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: ea1d1e3fdc906364eb5d7866c3cbe728, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ecf0dc0b-5a4d-4c73-954a-37b292819528
-    m_ActionName: 'Player/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 044cfbfe-6506-4635-8be9-0d7ab622ce65
-    m_ActionName: Player/Push
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6c62515c-3236-4b51-bb54-d5be16c12142
-    m_ActionName: Player/Toss
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 31625729-cdef-43bf-8112-28841b0aeffd
-    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveRequestComponent
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveRequired: 0
+  _moveDuration: 0.1
+  _moveTime: 0
 --- !u!1 &8988132346040627123
 GameObject:
   m_ObjectHideFlags: 0

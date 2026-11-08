@@ -5,18 +5,23 @@ namespace Game
 {
     public sealed class HealthComponent : MonoBehaviour
     {
+        
         [SerializeField] private CollisionComponent _healthCollision;
         
         [SerializeField] private float _maxHealth;
 
         public float CurrentHealth { get; private set; }
-        public bool IsAlive => CurrentHealth > 0;
+    
+        public bool IsAlive() => CurrentHealth > 0;
         public bool IsDied => CurrentHealth <= 0;
 
         public event Action<float> OnHealthChanged;
         public event Action OnTakedDamage;
         public event Action OnDied;
-
+        public interface IDamageHandler
+        {
+            int Handle(int damage);
+        }
         [SerializeField] private float _damage = 1f;
 
         private void Awake()
@@ -32,7 +37,7 @@ namespace Game
 
         public void TakeDamage(float damage)
         {
-            if (!IsAlive || damage <= 0)
+            if (!IsAlive() || damage <= 0)
                 return;
 
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);

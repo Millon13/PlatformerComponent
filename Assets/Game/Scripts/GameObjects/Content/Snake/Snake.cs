@@ -23,9 +23,9 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _patrolComponent.CanPatrol = _healthComponent.IsAlive;
-        _tossComponent.CanToss = _healthComponent.IsAlive && _groundedComponent.IsGrounded && !isTargetFollowing;
-        if (_healthComponent.IsAlive && _charectorTransform != null)
+        _patrolComponent.CanPatrol = _healthComponent.IsAlive();
+        _tossComponent.CanToss = _healthComponent.IsAlive() && _groundedComponent.IsGrounded && !isTargetFollowing;
+        if (_healthComponent.IsAlive() && _charectorTransform != null)
             _lookComponent.Look(_charectorTransform);
     }
 

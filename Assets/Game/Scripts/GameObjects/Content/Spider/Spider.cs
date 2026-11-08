@@ -18,6 +18,6 @@ public class Spider : MonoBehaviour
 
     private void Update()
     {
-        _patrolComponent.CanPatrol = _healthComponent.IsAlive && _groundedComponent.IsGrounded;
+        _patrolComponent.CanPatrol = _healthComponent.IsAlive() && _groundedComponent.IsGrounded;
     }
 }
