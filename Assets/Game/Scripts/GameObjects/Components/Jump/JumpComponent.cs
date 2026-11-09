@@ -6,7 +6,7 @@ namespace Game
 {
     public class JumpComponent : MonoBehaviour
     {
-        [SerializeField] private float force = 12f;
+        [SerializeField] private float force;
 
         [SerializeField] Rigidbody2D _rigidbody2D;
 

@@ -7,7 +7,8 @@ namespace Game.ImpulseComponent
     public class ImpulseComponent:MonoBehaviour
     {
         [SerializeField] private float _actionTime = 0.15f; // окно действия
-        [SerializeField] private float _impulseToOther = 8f;
+        [SerializeField] private float _fx = 1f;
+        [SerializeField] private float _fy = 1f;
 
         private float _actionUntil;
 
@@ -24,6 +25,7 @@ namespace Game.ImpulseComponent
 
         private void OnTriggerStay2D(Collider2D other)
             => TryImpulse(other, other.attachedRigidbody);
+            
 
         private void TryImpulse(Collider2D col, Rigidbody2D otherRb)
         {
@@ -31,13 +33,9 @@ namespace Game.ImpulseComponent
             if (otherRb == null || otherRb == GetComponent<Rigidbody2D>()) return;
             
             Vector2 dir = (otherRb.position - (Vector2)transform.position).normalized;
-            otherRb.AddForce(dir * _impulseToOther, ForceMode2D.Impulse);
+            Vector2 force = new Vector2(dir.x * _fx, dir.y * _fy);
+            otherRb.AddForce(force, ForceMode2D.Impulse);
+  
         }
-   /* public void Impulse(float fx, float fy, Rigidbody2D rb)
-    {
-        if (rb == null) return;
-        if (fx != 0f) rb.AddForceX(fx, ForceMode2D.Impulse);
-        if (fy != 0f) rb.AddForceY(fy, ForceMode2D.Impulse);
-    }*/
     }
 }

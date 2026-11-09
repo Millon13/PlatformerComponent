@@ -1,9 +1,19 @@
+using System;
 using UnityEngine;
 
 namespace Game
 {
     public sealed class LookComponent : MonoBehaviour
     {
+        [SerializeField] private Transform _charectorTransform;
+        
+
+        public void Update()
+        {
+            if (_charectorTransform != null)
+                Look(_charectorTransform);
+        }
+
         public void Look(Transform target)
         {
             Vector2 direction = target.position - this.transform.position;

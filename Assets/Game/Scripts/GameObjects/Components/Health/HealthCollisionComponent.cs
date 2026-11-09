@@ -1,0 +1,20 @@
+﻿using UnityEngine;
+
+namespace Game
+{
+    public class HealthCollisionComponent:MonoBehaviour
+    {
+        [SerializeField] private float _damage = 1f;
+        
+        private void OnCollisionEnter2D(Collision2D collision) => TryHealthCollide(collision);
+
+        public void TryHealthCollide(Collision2D collision)
+        {
+            HealthComponent damageable = collision.collider.GetComponentInParent<HealthComponent>();
+            if (damageable == null || damageable == this)
+                return;
+
+            damageable.TakeDamage(_damage);
+        }
+    }
+}

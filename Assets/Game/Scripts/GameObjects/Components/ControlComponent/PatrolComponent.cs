@@ -5,59 +5,52 @@ namespace Game
 {
     public class PatrolComponent : MonoBehaviour
     {
-        [SerializeField] private Transform _moveTransform;
-        
+        [SerializeField] private MoveTransformComponent _moveTransform;
         [SerializeField] private Transform _point1;
-        
         [SerializeField] private Transform _point2;
-        
         [SerializeField] private float _speed = 2f;
 
-        public Action<bool> OnPatrol;
-        
-        public bool CanPatrol;
-        
+        public event Action<bool> OnPatrolChanged;  
+
+        [SerializeField] private bool _canPatrol;
+        public bool CanPatrol
+        {
+            get => _canPatrol;
+            set
+            {
+                if (_canPatrol == value) return;
+                _canPatrol = value;
+                OnPatrolChanged?.Invoke(_canPatrol);
+            }
+        }
+
         private Transform _currentTarget;
+        private bool _wasPatrolling;
 
         private void Awake()
         {
             if (_moveTransform == null || _point1 == null || _point2 == null)
+            {
+                enabled = false;
                 return;
+            }
 
-            _moveTransform.position = _point1.position;
+            _moveTransform.transform.position = _point1.position;
             _currentTarget = _point2;
         }
 
         private void FixedUpdate()
         {
-            if (CanPatrol)
-            {
-                OnPatrol?.Invoke(true);
-                Patrol(_currentTarget);
-            }
-            else
-            {
-                OnPatrol?.Invoke(false);
-            }
+            Patrol(_currentTarget);
         }
 
         public void Patrol(Transform target)
         {
-            OnPatrol?.Invoke(true);
-            if (target == null || _moveTransform == null) return;
+            if (!CanPatrol || target == null) return;
 
-            _currentTarget = target;
-            Vector3 newPos = Vector3.MoveTowards(
-                _moveTransform.position,
-                _currentTarget.position,
-                _speed * Time.deltaTime
-            );
-            _moveTransform.position = newPos;
-
-            if (newPos == _currentTarget.position)
-            {
-                _currentTarget = _currentTarget == _point1 ? _point2 : _point1;
-            }
+            bool arrived = _moveTransform.MoveTowards(target.position, _speed);
+            if (arrived)
+                _currentTarget = target == _point1 ? _point2 : _point1;
         }
     }
 }

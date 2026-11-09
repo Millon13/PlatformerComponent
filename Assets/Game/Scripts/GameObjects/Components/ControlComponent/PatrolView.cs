@@ -16,12 +16,12 @@ namespace Game
 
         private void OnEnable()
         {
-            _patrolComponent.OnPatrol += OnPatrol;
+            _patrolComponent.OnPatrolChanged += OnPatrol;
         }
 
         private void OnDisable()
         {
-            _patrolComponent.OnPatrol -= OnPatrol;
+            _patrolComponent.OnPatrolChanged -= OnPatrol;
         }
 
         private void OnPatrol(bool IsPatrol)

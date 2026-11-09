@@ -18,7 +18,8 @@ public class Charector : MonoBehaviour,MoveRequestComponent.IAction,
     [SerializeField ]private LookComponent _lookComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
     [SerializeField] private JumpComponent _jumpComponent;
-    [SerializeField] private ImpulseComponent _impulseComponent;
+    [SerializeField] private ImpulseComponent _impulsePushComponent;
+    [SerializeField] private ImpulseComponent _impulseTossComponent;
 
     private void Awake()
     {
@@ -52,12 +53,12 @@ public class Charector : MonoBehaviour,MoveRequestComponent.IAction,
     }
      void PushRequestComponent.IAction.Invoke()
     {
-        _impulseComponent.BeginAction();
+        _impulsePushComponent.BeginAction();
     }
 
     void TossRequestComponent.IAction.Invoke()
     {
-        _impulseComponent.BeginAction();
+        _impulseTossComponent.BeginAction();
     }
     
     bool MoveRequestComponent.ICondition.Evaluate() =>
@@ -69,6 +70,5 @@ public class Charector : MonoBehaviour,MoveRequestComponent.IAction,
         _healthComponent.IsAlive();
     bool TossRequestComponent.ICondition.Evaluate() =>
         _healthComponent.IsAlive();
-    private void OnDead() => this.gameObject.SetActive(false);
     
 }

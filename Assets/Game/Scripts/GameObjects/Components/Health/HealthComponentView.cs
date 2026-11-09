@@ -48,7 +48,7 @@ namespace Game
             if (_animator != null)
                 _animator.SetTrigger("Death");
             this.gameObject.SetActive(false);
-            // Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

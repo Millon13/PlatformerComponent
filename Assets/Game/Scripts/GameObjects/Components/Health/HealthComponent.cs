@@ -6,8 +6,6 @@ namespace Game
     public sealed class HealthComponent : MonoBehaviour
     {
         
-        [SerializeField] private CollisionComponent _healthCollision;
-        
         [SerializeField] private float _maxHealth;
 
         public float CurrentHealth { get; private set; }
@@ -22,7 +20,6 @@ namespace Game
         {
             int Handle(int damage);
         }
-        [SerializeField] private float _damage = 1f;
 
         private void Awake()
         {
@@ -51,25 +48,7 @@ namespace Game
                 OnDied?.Invoke();
             }
         }
+        
 
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            HealthComponent damageable = collision.collider.GetComponentInParent<HealthComponent>();
-            if (damageable == null || damageable == this)
-                return;
-
-            damageable.TakeDamage(_damage);
-        }
-
-        private void OnEnable()
-        {
-            _healthCollision.OnEntered += OnCollisionEnter2D;
-        }
-
-        private void OnDisable()
-        {
-            _healthCollision.OnEntered -= OnCollisionEnter2D;
-        }
     }
 }

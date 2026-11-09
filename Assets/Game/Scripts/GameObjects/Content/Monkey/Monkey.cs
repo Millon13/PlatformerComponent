@@ -9,7 +9,8 @@ public class Monkey : MonoBehaviour,JumpRequestComponent.ICondition,JumpRequestC
     [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
     [SerializeField] private LookComponent _lookComponent;
     [SerializeField] private PushRequestComponent _pushComponent;
-    [SerializeField] private JumpRequestComponent _jumpComponent;
+    [SerializeField] private JumpRequestComponent _jumpRequestComponent;
+    [SerializeField] private JumpComponent _jumpComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
     [SerializeField] private ImpulseComponent _impulseComponent;
     private void Awake()
@@ -19,13 +20,23 @@ public class Monkey : MonoBehaviour,JumpRequestComponent.ICondition,JumpRequestC
         _lookComponent = GetComponent<LookComponent>();
         _healthComponent = GetComponent<HealthComponent>();
         _takeDamageColorComponent = GetComponent<TakeDamageColorComponent>();
- 
+         _pushComponent = GetComponent<PushRequestComponent>();
         _groundedComponent = GetComponent<GroundedComponent>();
-        _jumpComponent = GetComponent<JumpRequestComponent>();
-        _jumpComponent.SetCondition(this);
-        _jumpComponent.SetAction(this);
+        _jumpRequestComponent = GetComponent<JumpRequestComponent>();
+        _jumpRequestComponent.SetCondition(this);
+        _jumpRequestComponent.SetAction(this);
         _pushComponent.SetAction(this);
         _pushComponent.SetCondition(this);
+    }
+
+    private void Update()
+    {
+        if (_healthComponent.IsAlive()&&_groundedComponent.IsGrounded)
+        {
+            _pushComponent.Push();
+        }
+
+        
     }
     void JumpRequestComponent.IAction.Invoke()
     {

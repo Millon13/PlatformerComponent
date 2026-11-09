@@ -1,50 +1,31 @@
 using Game;
+using Game.ImpulseComponent;
 using UnityEngine;
 
-public class Snake : MonoBehaviour
+public class Snake : MonoBehaviour,TossRequestComponent.IAction,TossRequestComponent.ICondition
 {
-    [SerializeField] private Transform _charectorTransform;
-    [SerializeField] private TriggerComponent _agroTrigger;
-    [SerializeField] private Collider2D _followingActivateCollider;
     [SerializeField] private HealthComponent _healthComponent;
     [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
-    [SerializeField] private LookComponent _lookComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
-    [SerializeField] private PatrolComponent _patrolComponent;
-    [SerializeField] private TossComponent _tossComponent;
-    private bool isTargetFollowing;
+    [SerializeField]private TossRequestComponent _tossComponent;
+    [SerializeField]private ImpulseComponent _impulseComponent;
 
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
         _takeDamageColorComponent = GetComponent<TakeDamageColorComponent>();
-        _lookComponent = GetComponent<LookComponent>();
+        _tossComponent.SetAction(this);
+        _tossComponent.SetCondition(this);
     }
+    
 
-    private void FixedUpdate()
-    {
-        _patrolComponent.CanPatrol = _healthComponent.IsAlive();
-        _tossComponent.CanToss = _healthComponent.IsAlive() && _groundedComponent.IsGrounded && !isTargetFollowing;
-        if (_healthComponent.IsAlive() && _charectorTransform != null)
-            _lookComponent.Look(_charectorTransform);
-    }
 
-    private void OnEnable()
-    {
-        _agroTrigger.OnEntered += OnTriggerEntered;
-    }
 
-    private void OnDisable()
+    void TossRequestComponent.IAction.Invoke()
     {
-        _agroTrigger.OnEntered -= OnTriggerEntered;
+        _impulseComponent.BeginAction();
     }
-
-    private void OnTriggerEntered(Collider2D other)
-    {
-        if (other == _followingActivateCollider)
-        {
-            _patrolComponent.Patrol(_charectorTransform);
-            isTargetFollowing = true;
-        }
-    }
+    bool TossRequestComponent.ICondition.Evaluate() =>
+        _healthComponent.IsAlive()&&_groundedComponent.IsGrounded;
+   
 }
