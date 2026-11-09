@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Game.ImpulseComponent;
+using UnityEngine;
 
 namespace Game
 {
     public class PushComponentView : MonoBehaviour
     {
-        [SerializeField] private PushComponent _pushComponent;
+        [SerializeField] private PushRequestComponent _pushComponent;
         
         [SerializeField] private Animator _animator;
         
@@ -17,7 +18,7 @@ namespace Game
         private void Awake()
         {
             if (_pushComponent == null)
-                _pushComponent = GetComponent<PushComponent>();
+                _pushComponent = GetComponent<PushRequestComponent>();
         }
 
         private void OnEnable()

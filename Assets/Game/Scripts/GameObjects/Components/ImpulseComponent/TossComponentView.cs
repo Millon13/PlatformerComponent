@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Game.ImpulseComponent;
+using UnityEngine;
 
 namespace Game
 {
     public class TossComponentView : MonoBehaviour
     {
-        [SerializeField] private TossComponent _tossComponent;
+        [SerializeField] private TossRequestComponent _tossComponent;
         
         [SerializeField] private Animator _animator;
         
@@ -17,7 +18,7 @@ namespace Game
         private void Awake()
         {
             if (_tossComponent == null)
-                _tossComponent = GetComponent<TossComponent>();
+                _tossComponent = GetComponent<TossRequestComponent>();
         }
 
         private void OnEnable()

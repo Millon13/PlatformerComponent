@@ -35,7 +35,7 @@ namespace Game
             _jumpRequired = true;
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (_jumpRequired && (_condition == null || _condition.Evaluate()))
             {

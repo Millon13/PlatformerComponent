@@ -24,6 +24,7 @@ namespace Game
        }
         
        public event Action<Vector3> OnMoved;
+       public event Action<bool> OnMoving;
 
        public bool IsMoving => Time.time <= _moveTime;
 
@@ -59,8 +60,13 @@ namespace Game
                _moveAction?.Invoke(_moveDirection);
                _moveTime = Time.time + _moveDuration;
                this.OnMoved?.Invoke(_moveDirection);
+               this.OnMoving?.Invoke(true);
            }
 
+           if (!_moveRequired )
+           {
+               this.OnMoving?.Invoke(false);
+           }
            _moveRequired = false;
        }
     

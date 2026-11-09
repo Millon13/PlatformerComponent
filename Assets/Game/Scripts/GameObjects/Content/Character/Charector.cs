@@ -12,11 +12,11 @@ public class Charector : MonoBehaviour,MoveRequestComponent.IAction,
     [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
     [SerializeField]private JumpRequestComponent _jumpRequestComponent;
     [SerializeField] private MoveRequestComponent _moveRequestComponent;
+    [SerializeField] private PushRequestComponent _pushRequestComponent;
+    [SerializeField]private TossRequestComponent _tossRequestComponent;
     [SerializeField] private MoveTransformComponent _moveTransformComponent;
     [SerializeField ]private LookComponent _lookComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
-    [SerializeField] private PushComponent _pushComponent;
-    [SerializeField] private TossComponent _tossComponent;
     [SerializeField] private JumpComponent _jumpComponent;
     [SerializeField] private ImpulseComponent _impulseComponent;
 
@@ -30,43 +30,45 @@ public class Charector : MonoBehaviour,MoveRequestComponent.IAction,
         _moveRequestComponent.SetAction(this);
         _moveRequestComponent.SetCondition(this);
         _jumpRequestComponent.SetCondition(this);
-        _moveRequestComponent.SetAction(this);
+        _jumpRequestComponent.SetAction(this);
+        _pushRequestComponent.SetAction(this);
+        _pushRequestComponent.SetCondition(this);
+        _tossRequestComponent.SetCondition(this);
+        _tossRequestComponent.SetAction(this);
     }
 
     void MoveRequestComponent.IAction.Invoke(Vector3 direction)
     {
-        _moveTransformComponent.MoveStep(direction);
-        _lookComponent.Look(direction);
+        if (direction != Vector3.zero)
+        {
+            _moveTransformComponent.MoveStep(direction);
+            _lookComponent.Look(direction);
+        }
+      
     }
     void JumpRequestComponent.IAction.Invoke()
     {
         _jumpComponent.Jump();
     }
-     void PushRequestComponent.IAction.Invoke(float x, float y,Rigidbody2D rb)
+     void PushRequestComponent.IAction.Invoke()
     {
-      // _impulseComponent.Impulse();
+        _impulseComponent.BeginAction();
     }
 
     void TossRequestComponent.IAction.Invoke()
     {
-       // _impulseComponent.Impulse();
+        _impulseComponent.BeginAction();
     }
-
-  
-
+    
     bool MoveRequestComponent.ICondition.Evaluate() =>
         _healthComponent.IsAlive();
 
     bool JumpRequestComponent.ICondition.Evaluate() =>
-        _healthComponent.IsAlive();
+        _healthComponent.IsAlive()&&_groundedComponent.IsGrounded;
     bool PushRequestComponent.ICondition.Evaluate() =>
         _healthComponent.IsAlive();
     bool TossRequestComponent.ICondition.Evaluate() =>
         _healthComponent.IsAlive();
     private void OnDead() => this.gameObject.SetActive(false);
-
-    public void Invoke(float fx, float fy, Rigidbody2D rb)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }

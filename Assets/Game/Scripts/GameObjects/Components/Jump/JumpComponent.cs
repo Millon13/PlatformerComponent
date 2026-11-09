@@ -10,9 +10,6 @@ namespace Game
 
         [SerializeField] Rigidbody2D _rigidbody2D;
 
-//[SerializeField] float cooldown = 0.25f;
-
-       // [SerializeField] float delay = 0.05f;
         
         public void Jump()
         { 

@@ -13,6 +13,7 @@ namespace Game.ImpulseComponent
 
         private void HandleKeyboard()
         {
+        
             if (Input.GetKey(KeyCode.Mouse0))
                 _character.GetComponent<PushRequestComponent>().Push();
             if (Input.GetKey(KeyCode.Mouse1))

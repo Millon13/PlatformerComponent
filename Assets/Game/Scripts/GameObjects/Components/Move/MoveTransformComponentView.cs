@@ -17,21 +17,20 @@ namespace Game
 
         private void OnEnable()
         {
-            _moveComponent.OnMoved += OnMove;
+            _moveComponent.OnMoving += OnMove;
         }
 
         private void OnDisable()
         {
-            _moveComponent.OnMoved -= OnMove;
+            _moveComponent.OnMoving -= OnMove;
         }
 
-        private void OnMove(Vector3  moveDirection)
+        private void OnMove(bool isMoving)
         {
-            if (moveDirection != Vector3.zero)
-            {
-                _animator.SetBool(IsMoving, _moveComponent.IsMoving);
-            }
-            
+
+            _animator.SetBool(IsMoving, isMoving);
+
+
         }
     }
 }
