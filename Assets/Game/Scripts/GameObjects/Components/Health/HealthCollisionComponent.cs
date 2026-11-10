@@ -2,10 +2,10 @@
 
 namespace Game
 {
-    public class HealthCollisionComponent:MonoBehaviour
+    public class HealthCollisionComponent : MonoBehaviour
     {
         [SerializeField] private float _damage = 1f;
-        
+
         private void OnCollisionEnter2D(Collision2D collision) => TryHealthCollide(collision);
 
         public void TryHealthCollide(Collision2D collision)

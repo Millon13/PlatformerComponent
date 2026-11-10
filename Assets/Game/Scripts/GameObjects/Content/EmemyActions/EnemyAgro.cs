@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace Game.Scripts.GameObjects.Content.Monkey
 {
-    public class EnemyAgro: MonoBehaviour
+    public class EnemyAgro : MonoBehaviour
 
-    {   [SerializeField] private Transform _charectorTransform;
+    {
+        [SerializeField] private Transform _charectorTransform;
         [SerializeField] private PatrolComponent _patrolComponent;
         [SerializeField] private LookComponent _lookComponent;
         private bool isTargetFollowing;
@@ -24,10 +25,8 @@ namespace Game.Scripts.GameObjects.Content.Monkey
 
         private void Awake()
         {
-      
-            if(_patrolComponent != null)
-            _patrolComponent.CanPatrol = true;
-            
+            if (_patrolComponent != null)
+                _patrolComponent.CanPatrol = true;
         }
 
         private void TryFollow()
@@ -35,6 +34,5 @@ namespace Game.Scripts.GameObjects.Content.Monkey
             _patrolComponent.Patrol(_charectorTransform);
             isTargetFollowing = true;
         }
-
     }
 }

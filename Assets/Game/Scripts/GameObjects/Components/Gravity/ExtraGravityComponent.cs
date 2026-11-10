@@ -8,7 +8,7 @@ namespace Game
         [SerializeField] private float _gravity = -7f;
 
         private GroundedComponent _groundedComponent;
-        
+
         private Rigidbody2D _rigidbody;
 
         private void Awake()

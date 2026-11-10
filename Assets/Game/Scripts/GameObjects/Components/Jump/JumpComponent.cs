@@ -10,9 +10,9 @@ namespace Game
 
         [SerializeField] Rigidbody2D _rigidbody2D;
 
-        
+
         public void Jump()
-        { 
+        {
             if (force == 0 || _rigidbody2D == null) return;
             _rigidbody2D.AddForceY(force, ForceMode2D.Impulse);
         }

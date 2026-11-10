@@ -5,17 +5,17 @@ namespace Game
 {
     public sealed class HealthComponent : MonoBehaviour
     {
-        
         [SerializeField] private float _maxHealth;
 
         public float CurrentHealth { get; private set; }
-    
+
         public bool IsAlive() => CurrentHealth > 0;
         public bool IsDied => CurrentHealth <= 0;
 
         public event Action<float> OnHealthChanged;
         public event Action OnTakedDamage;
         public event Action OnDied;
+
         public interface IDamageHandler
         {
             int Handle(int damage);
@@ -48,7 +48,5 @@ namespace Game
                 OnDied?.Invoke();
             }
         }
-        
-
     }
 }

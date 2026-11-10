@@ -5,7 +5,7 @@ namespace Game
     public class PatrolView : MonoBehaviour
     {
         [SerializeField] private PatrolComponent _patrolComponent;
-        
+
         [SerializeField] private Animator _animator;
 
         private void Awake()

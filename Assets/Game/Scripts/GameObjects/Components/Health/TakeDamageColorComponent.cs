@@ -16,7 +16,7 @@ namespace Game
         private Color _baseColor;
 
         private float _blend; // 0..1
-        
+
         private Tween _tween;
 
         private void Reset()

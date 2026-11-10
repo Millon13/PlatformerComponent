@@ -2,13 +2,13 @@ using Game;
 using Game.ImpulseComponent;
 using UnityEngine;
 
-public class Snake : MonoBehaviour,TossRequestComponent.IAction,TossRequestComponent.ICondition
+public class Snake : MonoBehaviour, ImpulseRequestComponent.IAction, ImpulseRequestComponent.ICondition
 {
     [SerializeField] private HealthComponent _healthComponent;
     [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
-    [SerializeField]private TossRequestComponent _tossComponent;
-    [SerializeField]private ImpulseComponent _impulseComponent;
+    [SerializeField] private ImpulseRequestComponent _tossComponent;
+    [SerializeField] private ImpulseComponent _impulseComponent;
 
     private void Awake()
     {
@@ -17,15 +17,13 @@ public class Snake : MonoBehaviour,TossRequestComponent.IAction,TossRequestCompo
         _tossComponent.SetAction(this);
         _tossComponent.SetCondition(this);
     }
-    
 
 
-
-    void TossRequestComponent.IAction.Invoke()
+    void ImpulseRequestComponent.IAction.Invoke()
     {
         _impulseComponent.BeginAction();
     }
-    bool TossRequestComponent.ICondition.Evaluate() =>
-        _healthComponent.IsAlive()&&_groundedComponent.IsGrounded;
-   
+
+    bool ImpulseRequestComponent.ICondition.Evaluate() =>
+        _healthComponent.IsAlive() && _groundedComponent.IsGrounded;
 }

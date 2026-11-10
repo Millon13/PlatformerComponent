@@ -10,9 +10,10 @@ namespace Game
         [SerializeField] private Transform _point2;
         [SerializeField] private float _speed = 2f;
 
-        public event Action<bool> OnPatrolChanged;  
+        public event Action<bool> OnPatrolChanged;
 
         [SerializeField] private bool _canPatrol;
+
         public bool CanPatrol
         {
             get => _canPatrol;

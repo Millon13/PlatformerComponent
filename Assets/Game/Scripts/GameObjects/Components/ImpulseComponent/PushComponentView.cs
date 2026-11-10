@@ -1,34 +1,36 @@
 ﻿using Game.ImpulseComponent;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game
 {
     public class PushComponentView : MonoBehaviour
     {
-        [SerializeField] private PushRequestComponent _pushComponent;
-        
+        [SerializeField]
+        private ImpulseRequestComponent impulseComponent;
+
         [SerializeField] private Animator _animator;
-        
+
         [SerializeField] AudioSource _audioSource;
-        
+
         [SerializeField] private AudioClip _pushSound;
-        
+
         [SerializeField] private ParticleSystem _particleSystem;
 
         private void Awake()
         {
-            if (_pushComponent == null)
-                _pushComponent = GetComponent<PushRequestComponent>();
+            if (impulseComponent == null)
+                impulseComponent = GetComponent<ImpulseRequestComponent>();
         }
 
         private void OnEnable()
         {
-            _pushComponent.OnPush += OnPush;
+            impulseComponent.OnImpulse += OnPush;
         }
 
         private void OnDisable()
         {
-            _pushComponent.OnPush -= OnPush;
+            impulseComponent.OnImpulse -= OnPush;
         }
 
         private void OnPush(bool isPushed)

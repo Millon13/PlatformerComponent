@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Game.ImpulseComponent
 {
-    public class ImpulseComponent:MonoBehaviour
+    public class ImpulseComponent : MonoBehaviour
     {
-        [SerializeField] private float _actionTime = 0.15f; // окно действия
+        [SerializeField] private float _actionTime = 0.15f; 
         [SerializeField] private float _fx = 1f;
         [SerializeField] private float _fy = 1f;
 
@@ -14,28 +14,15 @@ namespace Game.ImpulseComponent
 
         public void BeginAction() => _actionUntil = Time.time + _actionTime;
 
-        private void OnCollisionEnter2D(Collision2D collision)
-            => TryImpulse(collision.collider, collision.rigidbody);
 
-        private void OnCollisionStay2D(Collision2D collision)
-            => TryImpulse(collision.collider, collision.rigidbody);
-
-        private void OnTriggerEnter2D(Collider2D other)
-            => TryImpulse(other, other.attachedRigidbody);
-
-        private void OnTriggerStay2D(Collider2D other)
-            => TryImpulse(other, other.attachedRigidbody);
-            
-
-        private void TryImpulse(Collider2D col, Rigidbody2D otherRb)
+        public void TryImpulse(Collider2D col, Rigidbody2D otherRb)
         {
             if (Time.time > _actionUntil) return;
             if (otherRb == null || otherRb == GetComponent<Rigidbody2D>()) return;
-            
+
             Vector2 dir = (otherRb.position - (Vector2)transform.position).normalized;
             Vector2 force = new Vector2(dir.x * _fx, dir.y * _fy);
             otherRb.AddForce(force, ForceMode2D.Impulse);
-  
         }
     }
 }

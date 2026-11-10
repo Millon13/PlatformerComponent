@@ -12,7 +12,7 @@ namespace Game
 
         private void Awake()
         {
-           // _moveTransformComponent = GetComponent<MoveTransformComponent>();
+            _moveComponent = GetComponent<MoveRequestComponent>();
         }
 
         private void OnEnable()
@@ -27,10 +27,7 @@ namespace Game
 
         private void OnMove(bool isMoving)
         {
-
             _animator.SetBool(IsMoving, isMoving);
-
-
         }
     }
 }

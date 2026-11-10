@@ -1,21 +1,21 @@
 using Game;
 using Game.ImpulseComponent;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Charector : MonoBehaviour,MoveRequestComponent.IAction, 
-    MoveRequestComponent.ICondition,JumpRequestComponent.IAction,
-    JumpRequestComponent.ICondition,PushRequestComponent.IAction,
-    PushRequestComponent.ICondition,TossRequestComponent.IAction,
-    TossRequestComponent.ICondition
+public class Charector : MonoBehaviour, MoveRequestComponent.IAction,
+    MoveRequestComponent.ICondition, JumpRequestComponent.IAction,
+    JumpRequestComponent.ICondition, ImpulseRequestComponent.IAction,
+    ImpulseRequestComponent.ICondition
 {
     [SerializeField] private HealthComponent _healthComponent;
     [SerializeField] private TakeDamageColorComponent _takeDamageColorComponent;
-    [SerializeField]private JumpRequestComponent _jumpRequestComponent;
+    [SerializeField] private JumpRequestComponent _jumpRequestComponent;
     [SerializeField] private MoveRequestComponent _moveRequestComponent;
-    [SerializeField] private PushRequestComponent _pushRequestComponent;
-    [SerializeField]private TossRequestComponent _tossRequestComponent;
+    [SerializeField] private ImpulseRequestComponent impulsePushRequestComponent;
+    [SerializeField] private ImpulseRequestComponent impulseTossRequestComponent;
     [SerializeField] private MoveTransformComponent _moveTransformComponent;
-    [SerializeField ]private LookComponent _lookComponent;
+    [SerializeField] private LookComponent _lookComponent;
     [SerializeField] private GroundedComponent _groundedComponent;
     [SerializeField] private JumpComponent _jumpComponent;
     [SerializeField] private ImpulseComponent _impulsePushComponent;
@@ -32,10 +32,10 @@ public class Charector : MonoBehaviour,MoveRequestComponent.IAction,
         _moveRequestComponent.SetCondition(this);
         _jumpRequestComponent.SetCondition(this);
         _jumpRequestComponent.SetAction(this);
-        _pushRequestComponent.SetAction(this);
-        _pushRequestComponent.SetCondition(this);
-        _tossRequestComponent.SetCondition(this);
-        _tossRequestComponent.SetAction(this);
+        impulsePushRequestComponent.SetAction(this);
+        impulsePushRequestComponent.SetCondition(this);
+        impulseTossRequestComponent.SetAction(this);
+        impulseTossRequestComponent.SetCondition(this);
     }
 
     void MoveRequestComponent.IAction.Invoke(Vector3 direction)
@@ -45,30 +45,24 @@ public class Charector : MonoBehaviour,MoveRequestComponent.IAction,
             _moveTransformComponent.MoveStep(direction);
             _lookComponent.Look(direction);
         }
-      
     }
+
     void JumpRequestComponent.IAction.Invoke()
     {
         _jumpComponent.Jump();
     }
-     void PushRequestComponent.IAction.Invoke()
+
+    void ImpulseRequestComponent.IAction.Invoke()
     {
         _impulsePushComponent.BeginAction();
     }
 
-    void TossRequestComponent.IAction.Invoke()
-    {
-        _impulseTossComponent.BeginAction();
-    }
-    
     bool MoveRequestComponent.ICondition.Evaluate() =>
         _healthComponent.IsAlive();
 
     bool JumpRequestComponent.ICondition.Evaluate() =>
-        _healthComponent.IsAlive()&&_groundedComponent.IsGrounded;
-    bool PushRequestComponent.ICondition.Evaluate() =>
+        _healthComponent.IsAlive() && _groundedComponent.IsGrounded;
+
+    bool ImpulseRequestComponent.ICondition.Evaluate() =>
         _healthComponent.IsAlive();
-    bool TossRequestComponent.ICondition.Evaluate() =>
-        _healthComponent.IsAlive();
-    
 }

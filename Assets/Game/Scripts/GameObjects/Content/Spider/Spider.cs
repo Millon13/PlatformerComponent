@@ -1,8 +1,9 @@
 using Game;
 using Game.ImpulseComponent;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Spider : MonoBehaviour,PushRequestComponent.ICondition,PushRequestComponent.IAction
+public class Spider : MonoBehaviour, ImpulseRequestComponent.ICondition, ImpulseRequestComponent.IAction
 {
     [SerializeField] private HealthComponent _healthComponent;
     private TakeDamageColorComponent _takeDamageColorComponent;
@@ -10,21 +11,26 @@ public class Spider : MonoBehaviour,PushRequestComponent.ICondition,PushRequestC
     [SerializeField] private GroundedComponent _groundedComponent;
 
     [SerializeField] private ImpulseComponent _impulseComponent;
-    [SerializeField]private PushRequestComponent _pushComponent;
+
+    [SerializeField]
+    private ImpulseRequestComponent impulseComponent;
+
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
         _takeDamageColorComponent = GetComponent<TakeDamageColorComponent>();
         _patrolComponent = GetComponent<PatrolComponent>();
-        _pushComponent.SetAction(this);
-        _pushComponent.SetCondition(this);
+        impulseComponent.SetAction(this);
+        impulseComponent.SetCondition(this);
     }
-    void PushRequestComponent.IAction.Invoke()
+
+    void ImpulseRequestComponent.IAction.Invoke()
     {
         _impulseComponent.BeginAction();
     }
-    bool PushRequestComponent.ICondition.Evaluate() =>
-        _healthComponent.IsAlive()&&_groundedComponent.IsGrounded;
+
+    bool ImpulseRequestComponent.ICondition.Evaluate() =>
+        _healthComponent.IsAlive() && _groundedComponent.IsGrounded;
 
     private void Update()
     {

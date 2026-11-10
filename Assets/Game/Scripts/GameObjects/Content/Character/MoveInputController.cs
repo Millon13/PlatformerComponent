@@ -2,10 +2,9 @@
 
 namespace Game.Scripts.GameObjects.Content.Character
 {
-    public class MoveInputController:MonoBehaviour
+    public class MoveInputController : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject _character;
+        [SerializeField] private GameObject _character;
 
         private void Update()
         {

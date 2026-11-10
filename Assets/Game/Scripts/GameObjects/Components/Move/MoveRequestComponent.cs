@@ -4,72 +4,60 @@ using UnityEngine.InputSystem;
 
 namespace Game
 {
-    public class MoveRequestComponent: MonoBehaviour
+    public class MoveRequestComponent : MonoBehaviour
     {
-       /* [SerializeField] private PlayerInput _input;
-        [SerializeField] private MoveTransformComponent _mover;
-        
-        private void Update()
+        public interface IAction
         {
-            _mover.Move(_input.Horizontal);
-        }*/
-       public interface IAction
-       {
-           void Invoke(Vector3 direction);
-       }
-        
-       public interface ICondition
-       {
-           bool Evaluate();
-       }
-        
-       public event Action<Vector3> OnMoved;
-       public event Action<bool> OnMoving;
+            void Invoke(Vector3 direction);
+        }
 
-       public bool IsMoving => Time.time <= _moveTime;
+        public interface ICondition
+        {
+            bool Evaluate();
+        }
 
-       [SerializeField]
-       private Vector3 _moveDirection;
+        public event Action<Vector3> OnMoved;
+        public event Action<bool> OnMoving;
 
-       [SerializeField]
-       private bool _moveRequired;
+        public bool IsMoving => Time.time <= _moveTime;
 
-       [SerializeField]
-       private float _moveDuration = 0.1f;
+        [SerializeField] private Vector3 _moveDirection;
 
-       [SerializeField]
-       private float _moveTime;
+        [SerializeField] private bool _moveRequired;
 
-       private IAction _moveAction;
-       private ICondition _condition;
+        [SerializeField] private float _moveDuration = 0.1f;
 
-       public void SetAction(IAction action) => _moveAction = action;
+        [SerializeField] private float _moveTime;
 
-       public void SetCondition(ICondition condition) => _condition = condition;
+        private IAction _moveAction;
+        private ICondition _condition;
 
-       public void Move(Vector3 direction)
-       {
-           _moveDirection = direction;
-           _moveRequired = true;
-       }
+        public void SetAction(IAction action) => _moveAction = action;
 
-       private void FixedUpdate()
-       {
-           if (_moveRequired && _moveDirection != Vector3.zero && (_condition == null || _condition.Evaluate()))
-           {
-               _moveAction?.Invoke(_moveDirection);
-               _moveTime = Time.time + _moveDuration;
-               this.OnMoved?.Invoke(_moveDirection);
-               this.OnMoving?.Invoke(true);
-           }
+        public void SetCondition(ICondition condition) => _condition = condition;
 
-           if (!_moveRequired )
-           {
-               this.OnMoving?.Invoke(false);
-           }
-           _moveRequired = false;
-       }
-    
+        public void Move(Vector3 direction)
+        {
+            _moveDirection = direction;
+            _moveRequired = true;
+        }
 
+        private void FixedUpdate()
+        {
+            if (_moveRequired && _moveDirection != Vector3.zero && (_condition == null || _condition.Evaluate()))
+            {
+                _moveAction?.Invoke(_moveDirection);
+                _moveTime = Time.time + _moveDuration;
+                this.OnMoved?.Invoke(_moveDirection);
+                this.OnMoving?.Invoke(true);
+            }
+
+            if (!_moveRequired)
+            {
+                this.OnMoving?.Invoke(false);
+            }
+
+            _moveRequired = false;
+        }
     }
 }

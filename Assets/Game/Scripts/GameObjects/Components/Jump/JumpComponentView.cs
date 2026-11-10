@@ -6,11 +6,11 @@ namespace Game
 
     {
         [SerializeField] private JumpRequestComponent _jumpComponent;
-        
+
         [SerializeField] private Animator _animator;
-        
+
         [SerializeField] AudioSource _audioSource;
-        
+
         [SerializeField] private AudioClip _jumpSound;
 
         private void Awake()

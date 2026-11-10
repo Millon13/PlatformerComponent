@@ -6,13 +6,13 @@ namespace Game
     public class HealthComponentView : MonoBehaviour
     {
         [SerializeField] HealthComponent _healthComponent;
-        
+
         [SerializeField] AudioSource _audioSource;
-        
+
         [SerializeField] private AudioClip _damageSound;
-        
+
         [SerializeField] private TakeDamageColorComponent _damageColorComponent;
-        
+
         [SerializeField] private Animator _animator;
 
         private void Awake()
@@ -48,7 +48,6 @@ namespace Game
             if (_animator != null)
                 _animator.SetTrigger("Death");
             this.gameObject.SetActive(false);
-            Destroy(this.gameObject);
-        }
+         }
     }
 }
