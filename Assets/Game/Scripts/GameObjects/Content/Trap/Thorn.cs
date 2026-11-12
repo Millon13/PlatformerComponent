@@ -5,26 +5,15 @@ namespace Game.Scripts.GameObjects.Content.Trap
 {
     public class Thorn:MonoBehaviour
     {
-        [SerializeField]
-        private TriggerComponent _thornTrigger;
-        [SerializeField] private HealthComponent  _thornHealthComponent;
-
-        private void Awake()
+        [SerializeField] private float _damage = 1f;
+        private void OnCollisionEnter2D(Collision2D collision) => TryHealthCollide(collision);
+        public void TryHealthCollide(Collision2D collision)
         {
-            _thornHealthComponent = GetComponent<HealthComponent>();
-        }
-        private void OnEnable() => _thornTrigger.OnEntered += this.OnTriggerEntered;
+            HealthComponent damageable = collision.collider.GetComponentInParent<HealthComponent>();
+            if (damageable == null || damageable == this)
+                return;
 
-        private void OnDisable() => _thornTrigger.OnEntered -= this.OnTriggerEntered;
-
-        private void OnTriggerEntered(Collider2D other)
-        {
-            if (other.TryGetComponent(out HealthComponent health))
-            {
-                health.TakeDamage(1);
-                _thornHealthComponent.TakeDamage(1);
-            }
-
+            damageable.TakeDamage(_damage);
         }
     }
 }

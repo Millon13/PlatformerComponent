@@ -5,7 +5,7 @@ namespace Game
 {
     public class PatrolComponent : MonoBehaviour
     {
-        [SerializeField] private MoveTransformComponent _moveTransform;
+        [SerializeField] private MoveComponent _moveTransform;
         [SerializeField] private Transform _point1;
         [SerializeField] private Transform _point2;
         [SerializeField] private float _speed = 2f;
@@ -26,6 +26,7 @@ namespace Game
         }
 
         private Transform _currentTarget;
+        private Vector3 currentTarget;
         private bool _wasPatrolling;
 
         private void Awake()
@@ -53,5 +54,17 @@ namespace Game
             if (arrived)
                 _currentTarget = target == _point1 ? _point2 : _point1;
         }
+        /*public void Patrol(Vector3 direction)
+        {
+            if (!CanPatrol) return;
+            
+            Vector3 targetPosition = _moveTransform.gameObject.transform.position + direction;
+
+            bool arrived = _moveTransform.MoveTowards(targetPosition, _speed);
+            if (arrived)
+            {
+                currentTarget = targetPosition;
+            }
+        }*/
     }
 }

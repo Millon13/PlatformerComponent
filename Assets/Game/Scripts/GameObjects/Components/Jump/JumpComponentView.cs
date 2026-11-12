@@ -5,7 +5,7 @@ namespace Game
     public class JumpComponentView : MonoBehaviour
 
     {
-        [SerializeField] private JumpRequestComponent _jumpComponent;
+        [SerializeField] private JumpComponent _jumpComponent;
 
         [SerializeField] private Animator _animator;
 
@@ -16,7 +16,7 @@ namespace Game
         private void Awake()
         {
             if (_jumpComponent == null)
-                _jumpComponent = GetComponent<JumpRequestComponent>();
+                _jumpComponent = GetComponent<JumpComponent>();
         }
 
         private void OnEnable()

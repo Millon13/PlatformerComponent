@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Game
 {
-    public class TossComponentView : MonoBehaviour
+    public class ImpulseComponentView : MonoBehaviour
     {
-        [SerializeField] private ImpulseRequestComponent _tossComponent;
+        [SerializeField] private ImpulseComponent.ImpulseComponent _tossComponent;
 
         [SerializeField] private Animator _animator;
 
@@ -18,7 +18,7 @@ namespace Game
         private void Awake()
         {
             if (_tossComponent == null)
-                _tossComponent = GetComponent<ImpulseRequestComponent>();
+                _tossComponent = GetComponent<ImpulseComponent.ImpulseComponent>();
         }
 
         private void OnEnable()

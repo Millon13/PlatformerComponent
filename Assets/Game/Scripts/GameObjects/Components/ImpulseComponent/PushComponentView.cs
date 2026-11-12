@@ -7,7 +7,7 @@ namespace Game
     public class PushComponentView : MonoBehaviour
     {
         [SerializeField]
-        private ImpulseRequestComponent impulseComponent;
+        private ImpulseComponent.ImpulseComponent impulseComponent;
 
         [SerializeField] private Animator _animator;
 
@@ -20,7 +20,7 @@ namespace Game
         private void Awake()
         {
             if (impulseComponent == null)
-                impulseComponent = GetComponent<ImpulseRequestComponent>();
+                impulseComponent = GetComponent<ImpulseComponent.ImpulseComponent>();
         }
 
         private void OnEnable()

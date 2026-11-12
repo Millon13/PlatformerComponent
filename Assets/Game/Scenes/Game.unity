@@ -388,12 +388,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435889929}
-  - component: {fileID: 435889928}
-  - component: {fileID: 435889927}
   - component: {fileID: 435889926}
-  - component: {fileID: 435889930}
-  - component: {fileID: 435889931}
+  - component: {fileID: 435889927}
   - component: {fileID: 435889932}
+  - component: {fileID: 435889931}
   m_Layer: 9
   m_Name: TossComponent
   m_TagString: Untagged
@@ -413,6 +411,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.PushRequestComponent
+  _actionTime: 0.3
+  _fx: 1
+  _fy: 10
+  _radius: 2
+  _mask:
+    serializedVersion: 2
+    m_Bits: 2147484159
 --- !u!114 &435889927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,21 +435,6 @@ MonoBehaviour:
   _audioSource: {fileID: 3567865948159137860}
   _tossSound: {fileID: 8300000, guid: a2fb8d4706a16468592a6e50aa24de65, type: 3}
   _particleSystem: {fileID: 3038079013810775851}
---- !u!114 &435889928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435889925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24e0499cde4b169b9f64bc68c79fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseComponent
-  _actionTime: 0.15
-  _fx: 1
-  _fy: 10
 --- !u!4 &435889929
 Transform:
   m_ObjectHideFlags: 0
@@ -460,7 +450,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5250976822473024921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &435889930
+--- !u!114 &435889931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435889925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bd3481cde748c6a96e2417a23b6532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.TriggerComponent
+--- !u!58 &435889932
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -496,31 +498,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.85, y: 0.56}
   m_Radius: 0.38957423
---- !u!114 &435889931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435889925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53bd3481cde748c6a96e2417a23b6532, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.TriggerComponent
---- !u!114 &435889932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435889925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcde5e4ff6e3452fa007595821a5a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Components.ImpulseComponent.ImpulseCollideComponent
-  _impulseComponent: {fileID: 435889928}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b628d591b094405af8a5650e03deb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolComponent
-  _moveTransform: {fileID: 5564134823604943147}
+  _moveTransform: {fileID: 5564134823604943150}
   _point1: {fileID: 363063489257113727}
   _point2: {fileID: 2964635647348452712}
   _speed: 2
@@ -1817,7 +1794,6 @@ GameObject:
   - component: {fileID: 1648890860}
   - component: {fileID: 1648890861}
   - component: {fileID: 1648890863}
-  - component: {fileID: 1648890862}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -1866,20 +1842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.JumpInputController
   _character: {fileID: 7542159812194644840}
---- !u!114 &1648890862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648890857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119f1e42b9ae4d518a1d9f45781a6756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseInputController
-  _character: {fileID: 435889925}
-  _impulse: 324
 --- !u!114 &1648890863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,8 +1854,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119f1e42b9ae4d518a1d9f45781a6756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseInputController
-  _character: {fileID: 2079190854}
-  _impulse: 323
+  _character: {fileID: 7542159812194644840}
+  _push: 323
+  _toss: 324
 --- !u!4 &1816226862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4979841302588641904, guid: b12d48f7b934943239d57d70cddd96e7, type: 3}
@@ -1911,7 +1874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b628d591b094405af8a5650e03deb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolComponent
-  _moveTransform: {fileID: 9111860641951361134}
+  _moveTransform: {fileID: 9111860641951361137}
   _point1: {fileID: 5434138036967245391}
   _point2: {fileID: 7441270365367608152}
   _speed: 2
@@ -39246,11 +39209,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2079190855}
   - component: {fileID: 2079190858}
-  - component: {fileID: 2079190857}
   - component: {fileID: 2079190856}
   - component: {fileID: 2079190859}
   - component: {fileID: 2079190860}
-  - component: {fileID: 2079190861}
   m_Layer: 9
   m_Name: PushComponent
   m_TagString: Untagged
@@ -39290,21 +39251,6 @@ MonoBehaviour:
   _audioSource: {fileID: 3567865948159137860}
   _pushSound: {fileID: 8300000, guid: 3dbd84c2bfae847229cd1013f68c0da7, type: 3}
   _particleSystem: {fileID: 1405201424080931215}
---- !u!114 &2079190857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079190854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24e0499cde4b169b9f64bc68c79fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseComponent
-  _actionTime: 0.15
-  _fx: 10
-  _fy: 1
 --- !u!114 &2079190858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39317,6 +39263,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseRequestComponent
+  _actionTime: 0.3
+  _fx: 10
+  _fy: 1
+  _radius: 2
+  _mask:
+    serializedVersion: 2
+    m_Bits: 2147484159
 --- !u!58 &2079190859
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -39365,19 +39318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bd3481cde748c6a96e2417a23b6532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.TriggerComponent
---- !u!114 &2079190861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079190854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcde5e4ff6e3452fa007595821a5a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Components.ImpulseComponent.ImpulseCollideComponent
-  _impulseComponent: {fileID: 2079190857}
 --- !u!1 &2096727757
 GameObject:
   m_ObjectHideFlags: 0
@@ -41611,7 +41551,7 @@ Tilemap:
       - {fileID: 21300000, guid: 67222f212dca84fa9958ecaa42ab7518, type: 3}
       - {fileID: 21300000, guid: 03e0cf4cb8ed84b25974b0816cc9ad3d, type: 3}
       - {fileID: 21300000, guid: dbe263ca7515249ec9a566aa5e2234f5, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 9, y: -3, z: 0}
@@ -42546,8 +42486,8 @@ GameObject:
   - component: {fileID: 9111860641951361132}
   - component: {fileID: 9111860641951361133}
   - component: {fileID: 9111860641951361135}
-  - component: {fileID: 9111860641951361134}
   - component: {fileID: 9111860641951361136}
+  - component: {fileID: 9111860641951361137}
   m_Layer: 3
   m_Name: GameObject
   m_TagString: Platform
@@ -42860,7 +42800,6 @@ GameObject:
   - component: {fileID: 813020282564822719}
   - component: {fileID: 1510023471305438673}
   - component: {fileID: 6443552121830020618}
-  - component: {fileID: 3451913519723974294}
   - component: {fileID: 2050864741834822314}
   - component: {fileID: 5699142599320657454}
   - component: {fileID: 8108656659898250822}
@@ -42868,13 +42807,10 @@ GameObject:
   - component: {fileID: 1578289763065414242}
   - component: {fileID: 5966123421195546516}
   - component: {fileID: 8108656659898250823}
-  - component: {fileID: 8108656659898250827}
   - component: {fileID: 8108656659898250826}
   - component: {fileID: 8108656659898250825}
-  - component: {fileID: 8108656659898250824}
+  - component: {fileID: 8108656659898250827}
   - component: {fileID: 8108656659898250828}
-  - component: {fileID: 8108656659898250829}
-  - component: {fileID: 8108656659898250830}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -42895,7 +42831,6 @@ GameObject:
   - component: {fileID: 813020281738207402}
   - component: {fileID: 1510023472098497476}
   - component: {fileID: 6443552121003700255}
-  - component: {fileID: 3451913519476467843}
   - component: {fileID: 2050864741545899199}
   - component: {fileID: 5699142599064598587}
   - component: {fileID: 8108656660715688019}
@@ -42903,13 +42838,10 @@ GameObject:
   - component: {fileID: 1578289762817614967}
   - component: {fileID: 5966123422012983681}
   - component: {fileID: 8108656660715688020}
-  - component: {fileID: 8108656660715688024}
   - component: {fileID: 8108656660715688023}
   - component: {fileID: 8108656660715688022}
-  - component: {fileID: 8108656660715688021}
+  - component: {fileID: 8108656660715688024}
   - component: {fileID: 8108656660715688025}
-  - component: {fileID: 8108656660715688026}
-  - component: {fileID: 8108656660715688027}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -49863,8 +49795,11 @@ MonoBehaviour:
   _healthComponent: {fileID: 2333914850302264131}
   _patrolComponent: {fileID: 6443552121830020618}
   _groundedComponent: {fileID: 5699142599320657454}
-  _impulseComponent: {fileID: 8108656659898250827}
+  moveComponent: {fileID: 8108656659898250827}
+  _impulseComponent: {fileID: 8108656659898250826}
   impulseComponent: {fileID: 8108656659898250826}
+  _damage: 1
+  _impulseInterval: 1
 --- !u!114 &1510023472098497476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49880,8 +49815,11 @@ MonoBehaviour:
   _healthComponent: {fileID: 2333914850582979926}
   _patrolComponent: {fileID: 6443552121003700255}
   _groundedComponent: {fileID: 5699142599064598587}
-  _impulseComponent: {fileID: 8108656660715688024}
+  moveComponent: {fileID: 8108656660715688024}
+  _impulseComponent: {fileID: 8108656660715688023}
   impulseComponent: {fileID: 8108656660715688023}
+  _damage: 1
+  _impulseInterval: 1
 --- !u!1 &1531573172361198896
 GameObject:
   m_ObjectHideFlags: 0
@@ -50134,20 +50072,6 @@ Transform:
   - {fileID: 5252563285198265456}
   m_Father: {fileID: 3444147336201489135}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1662313365694358940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397315479776418722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475aee36c0414e54889e3d254ddbad9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.JumpComponent
-  force: 300
-  _rigidbody2D: {fileID: 7281865940097660547}
 --- !u!212 &1668976475971519277
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50724,20 +50648,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1896826912878254350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685899152628074762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8397da5059e94feb93e19bff17bdefa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolView
-  _patrolComponent: {fileID: 7843392079645557138}
-  _animator: {fileID: 4800857502822899610}
 --- !u!4 &1907655734429195639
 Transform:
   m_ObjectHideFlags: 0
@@ -51231,7 +51141,6 @@ GameObject:
   - component: {fileID: 2264844061141151275}
   - component: {fileID: 5978686337803131411}
   - component: {fileID: 5978686337803131410}
-  - component: {fileID: 5978686337803131409}
   - component: {fileID: 5978686337803131408}
   - component: {fileID: 5978686337803131403}
   - component: {fileID: 5978686337803131402}
@@ -51242,7 +51151,6 @@ GameObject:
   - component: {fileID: 5978686337803131417}
   - component: {fileID: 5978686337803131418}
   - component: {fileID: 5978686337803131419}
-  - component: {fileID: 5978686337803131420}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -51943,8 +51851,11 @@ MonoBehaviour:
   _healthComponent: {fileID: 1573709249299666139}
   _patrolComponent: {fileID: 7843392079645557138}
   _groundedComponent: {fileID: 8836661659935934902}
-  _impulseComponent: {fileID: 8836661659935934904}
+  moveComponent: {fileID: 8836661659935934908}
+  _impulseComponent: {fileID: 8836661659935934905}
   impulseComponent: {fileID: 8836661659935934905}
+  _damage: 1
+  _impulseInterval: 1
 --- !u!1 &2402534428032577119
 GameObject:
   m_ObjectHideFlags: 0
@@ -52823,11 +52734,12 @@ MonoBehaviour:
   _healthComponent: {fileID: 4154001076523510278}
   _takeDamageColorComponent: {fileID: 629865061985671009}
   _lookComponent: {fileID: 8432592903937822976}
-  impulseComponent: {fileID: 0}
-  _jumpRequestComponent: {fileID: 9087272483533179434}
-  _jumpComponent: {fileID: 1662313365694358940}
+  impulseComponent: {fileID: 9087272483533179436}
+  _jumpComponent: {fileID: 9087272483533179434}
   _groundedComponent: {fileID: 6786657137611236510}
-  _impulseComponent: {fileID: 9087272483533179435}
+  _impulseComponent: {fileID: 9087272483533179436}
+  _damage: 10
+  _jumpInterval: 2
 --- !u!4 &2842192727679244877
 Transform:
   m_ObjectHideFlags: 0
@@ -58868,34 +58780,6 @@ Transform:
   - {fileID: 1647465572627081832}
   m_Father: {fileID: 8820481845188916117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3451913519476467843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927761259296903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8397da5059e94feb93e19bff17bdefa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolView
-  _patrolComponent: {fileID: 6443552121003700255}
-  _animator: {fileID: 8580863070984089111}
---- !u!114 &3451913519723974294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927760441056914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8397da5059e94feb93e19bff17bdefa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolView
-  _patrolComponent: {fileID: 6443552121830020618}
-  _animator: {fileID: 8580863070727915522}
 --- !u!1 &3451974488519331307
 GameObject:
   m_ObjectHideFlags: 0
@@ -59232,7 +59116,6 @@ GameObject:
   - component: {fileID: 4538826511405322535}
   - component: {fileID: 2396448614498951753}
   - component: {fileID: 7843392079645557138}
-  - component: {fileID: 1896826912878254350}
   - component: {fileID: 3009365061588632882}
   - component: {fileID: 8836661659935934902}
   - component: {fileID: 4986319647248835038}
@@ -59241,12 +59124,9 @@ GameObject:
   - component: {fileID: 7457581298731317260}
   - component: {fileID: 8836661659935934903}
   - component: {fileID: 8836661659935934907}
-  - component: {fileID: 8836661659935934906}
   - component: {fileID: 8836661659935934905}
-  - component: {fileID: 8836661659935934904}
   - component: {fileID: 8836661659935934908}
   - component: {fileID: 8836661659935934909}
-  - component: {fileID: 8836661659935934910}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -60983,7 +60863,6 @@ GameObject:
   - component: {fileID: 9087272483533179430}
   - component: {fileID: 629865061985671009}
   - component: {fileID: 7519224617851424872}
-  - component: {fileID: 1662313365694358940}
   - component: {fileID: 4154001076523510278}
   - component: {fileID: 6786657137611236510}
   - component: {fileID: 8432592903937822976}
@@ -60995,11 +60874,6 @@ GameObject:
   - component: {fileID: 9087272483533179433}
   - component: {fileID: 9087272483533179434}
   - component: {fileID: 9087272483533179436}
-  - component: {fileID: 9087272483533179435}
-  - component: {fileID: 9087272483533179438}
-  - component: {fileID: 9087272483533179437}
-  - component: {fileID: 9087272483533179439}
-  - component: {fileID: 9087272483533179440}
   m_Layer: 8
   m_Name: Monkey
   m_TagString: Untagged
@@ -61875,16 +61749,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Charector
   _healthComponent: {fileID: 131957383646659043}
   _takeDamageColorComponent: {fileID: 8991474746247211088}
-  _jumpRequestComponent: {fileID: 8974961780927055236}
-  _moveRequestComponent: {fileID: 8974961780927055233}
-  impulsePushRequestComponent: {fileID: 2079190858}
-  impulseTossRequestComponent: {fileID: 435889926}
-  _moveTransformComponent: {fileID: 5867022072869535919}
+  moveComponent: {fileID: 8974961780927055233}
+  _impulsePushComponent: {fileID: 2079190858}
+  _impulseTossComponent: {fileID: 435889926}
+  _moveTransformComponent: {fileID: 8974961780927055233}
   _lookComponent: {fileID: 8974961780927055232}
   _groundedComponent: {fileID: 2013202940249811400}
-  _jumpComponent: {fileID: 5099586561026233491}
-  _impulsePushComponent: {fileID: 435889928}
-  _impulseTossComponent: {fileID: 435889928}
+  _jumpComponent: {fileID: 8974961780927055236}
+  _damage: 1
 --- !u!114 &4986319647248835038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61989,20 +61861,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9046865876167101826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.002}
---- !u!114 &5099586561026233491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542159812194644840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475aee36c0414e54889e3d254ddbad9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.JumpComponent
-  force: 12
-  _rigidbody2D: {fileID: 6962936837819257874}
 --- !u!1 &5154962145440732816
 GameObject:
   m_ObjectHideFlags: 0
@@ -62148,8 +62006,8 @@ Transform:
   - {fileID: 6562931316307947230}
   - {fileID: 5903711164104661344}
   - {fileID: 2004507831709069291}
-  - {fileID: 435889929}
   - {fileID: 2079190855}
+  - {fileID: 435889929}
   - {fileID: 5360288909273674797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.371}
@@ -62287,7 +62145,7 @@ Transform:
   m_GameObject: {fileID: 5359933571195221829}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 69.3, y: 9.75, z: 0}
+  m_LocalPosition: {x: 69.3, y: 9.768, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62574,8 +62432,8 @@ GameObject:
   - component: {fileID: 5564134823604943145}
   - component: {fileID: 5564134823604943146}
   - component: {fileID: 5564134823604943148}
-  - component: {fileID: 5564134823604943147}
   - component: {fileID: 5564134823604943149}
+  - component: {fileID: 5564134823604943150}
   m_Layer: 3
   m_Name: GameObject
   m_TagString: Platform
@@ -62608,19 +62466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16615f4fd9aa496686de7e8755045b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CollisionComponent
---- !u!114 &5564134823604943147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5564134823604943144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _moveSpeed: 2
 --- !u!114 &5564134823604943148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62647,6 +62492,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Platform.Platform
   _patrolComponent: {fileID: 1110392546}
+--- !u!114 &5564134823604943150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564134823604943144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cad170c47441b59df3b0f0c70bd101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponent
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveRequired: 0
+  _moveDuration: 0.1
+  _moveTime: 0
+  _moveSpeed: 4.5
 --- !u!58 &5568688914215148110
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -63065,19 +62927,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1669766972268401436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5867022072869535919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542159812194644840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _moveSpeed: 4.5
 --- !u!1 &5891192825772295221
 GameObject:
   m_ObjectHideFlags: 0
@@ -63358,25 +63207,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039122327916348424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bd8ed7bbf274eea99360b8b879f3cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.LookComponent
   _charectorTransform: {fileID: 5250976822473024921}
---- !u!114 &5978686337803131409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039122327916348424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
-  _damage: 1
 --- !u!50 &5978686337803131410
 Rigidbody2D:
   serializedVersion: 5
@@ -63497,8 +63333,12 @@ MonoBehaviour:
   _healthComponent: {fileID: 5978686337803131403}
   _takeDamageColorComponent: {fileID: 4263913934557191933}
   _groundedComponent: {fileID: 5978686337803131402}
-  _tossComponent: {fileID: 8329134012361652463}
   _impulseComponent: {fileID: 5978686337803131419}
+  _damage: 1
+  _charectorTransform: {fileID: 5172596394772573584}
+  _patrolComponent: {fileID: 5999624103553349972}
+  _lookComponent: {fileID: 5999624103553349971}
+  _impulseInterval: 1
 --- !u!114 &5978686337803131419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63508,25 +63348,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2039122327916348424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24e0499cde4b169b9f64bc68c79fa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseComponent
   _actionTime: 0.15
-  _fx: 3
-  _fy: 10
---- !u!114 &5978686337803131420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039122327916348424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcde5e4ff6e3452fa007595821a5a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Components.ImpulseComponent.ImpulseCollideComponent
-  _impulseComponent: {fileID: 5978686337803131419}
+  _fx: 1
+  _fy: 1
+  _radius: 1
+  _mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!4 &5979312714395526921
 Transform:
   m_ObjectHideFlags: 0
@@ -63637,7 +63468,7 @@ GameObject:
   - component: {fileID: 5999624103553349967}
   - component: {fileID: 5999624103553349972}
   - component: {fileID: 5999624103553349971}
-  - component: {fileID: 5999624103553349970}
+  - component: {fileID: 5999624103553349973}
   m_Layer: 8
   m_Name: Snake
   m_TagString: Untagged
@@ -63718,19 +63549,7 @@ MonoBehaviour:
   _charectorTransform: {fileID: 5250976822473024921}
   _patrolComponent: {fileID: 5999624103553349972}
   _lookComponent: {fileID: 5978686337803131408}
---- !u!114 &5999624103553349970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5999624103553349966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _moveSpeed: 1
+  isTargetFollowing: 0
 --- !u!114 &5999624103553349971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63756,11 +63575,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b628d591b094405af8a5650e03deb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolComponent
-  _moveTransform: {fileID: 5999624103553349970}
+  _moveTransform: {fileID: 5999624103553349973}
   _point1: {fileID: 0}
   _point2: {fileID: 0}
   _speed: 1
   _canPatrol: 0
+--- !u!114 &5999624103553349973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999624103553349966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cad170c47441b59df3b0f0c70bd101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponent
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveRequired: 0
+  _moveDuration: 0.1
+  _moveTime: 0
+  _moveSpeed: 4.5
 --- !u!1 &6042065782652406450
 GameObject:
   m_ObjectHideFlags: 0
@@ -64852,7 +64688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b628d591b094405af8a5650e03deb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolComponent
-  _moveTransform: {fileID: 8108656660715688021}
+  _moveTransform: {fileID: 8108656660715688024}
   _point1: {fileID: 330482538314858111}
   _point2: {fileID: 5737562045552250611}
   _speed: 1
@@ -64869,7 +64705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b628d591b094405af8a5650e03deb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolComponent
-  _moveTransform: {fileID: 8108656659898250824}
+  _moveTransform: {fileID: 8108656659898250827}
   _point1: {fileID: 330482538604566634}
   _point2: {fileID: 5737562045799246054}
   _speed: 1
@@ -65668,7 +65504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48271d6bc5024b99a99384d06e2a3ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponentView
-  _moveComponent: {fileID: 8974961780927055233}
+  moveTransformComponent: {fileID: 8974961780927055233}
   _animator: {fileID: 1071406199073621800}
 --- !u!1 &7083358518086258054
 GameObject:
@@ -66136,18 +65972,15 @@ GameObject:
   - component: {fileID: 4085921267710165477}
   - component: {fileID: 131957383646659043}
   - component: {fileID: 7008343585908957040}
-  - component: {fileID: 5867022072869535919}
   - component: {fileID: 8974961780927055232}
   - component: {fileID: 7078326576724733391}
   - component: {fileID: 2013202940249811400}
   - component: {fileID: 1131046928784267783}
-  - component: {fileID: 5099586561026233491}
   - component: {fileID: 3079883468488178454}
   - component: {fileID: 4174561128372152860}
   - component: {fileID: 4915403210777931153}
   - component: {fileID: 8974961780927055233}
   - component: {fileID: 8974961780927055236}
-  - component: {fileID: 8974961780927055239}
   m_Layer: 9
   m_Name: Character
   m_TagString: Character
@@ -66877,7 +66710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b628d591b094405af8a5650e03deb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.PatrolComponent
-  _moveTransform: {fileID: 8836661659935934906}
+  _moveTransform: {fileID: 8836661659935934908}
   _point1: {fileID: 3540769490653990898}
   _point2: {fileID: 8803025724419538814}
   _speed: 1
@@ -67259,19 +67092,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16615f4fd9aa496686de7e8755045b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CollisionComponent
---- !u!114 &8108656659898250824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927760441056914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _moveSpeed: 4.5
 --- !u!114 &8108656659898250825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67284,7 +67104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd8ed7bbf274eea99360b8b879f3cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.LookComponent
-  _charectorTransform: {fileID: 0}
+  _charectorTransform: {fileID: 5250976822473024921}
 --- !u!114 &8108656659898250826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67297,6 +67117,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.PushRequestComponent
+  _actionTime: 0.5
+  _fx: 10
+  _fy: 1
+  _radius: 1
+  _mask:
+    serializedVersion: 2
+    m_Bits: 2147484415
 --- !u!114 &8108656659898250827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67306,12 +67133,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 473927760441056914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24e0499cde4b169b9f64bc68c79fa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 65cad170c47441b59df3b0f0c70bd101, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseComponent
-  _actionTime: 0.15
-  _fx: 8
-  _fy: 8
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponent
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveRequired: 1
+  _moveDuration: 0.1
+  _moveTime: 0
+  _moveSpeed: 4.5
 --- !u!114 &8108656659898250828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67321,37 +67150,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 473927760441056914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cda89a9d66e4142bf83d0e5dc94c075, type: 3}
+  m_Script: {fileID: 11500000, guid: 48271d6bc5024b99a99384d06e2a3ded, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Monkey.EmemyPushInput
-  _impulseInterval: 1
-  impulseRequest: {fileID: 8108656659898250826}
---- !u!114 &8108656659898250829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927760441056914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
-  _damage: 1
---- !u!114 &8108656659898250830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927760441056914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcde5e4ff6e3452fa007595821a5a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Components.ImpulseComponent.ImpulseCollideComponent
-  _impulseComponent: {fileID: 8108656659898250827}
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponentView
+  moveTransformComponent: {fileID: 8108656659898250827}
+  _animator: {fileID: 8580863070727915522}
 --- !u!114 &8108656660715688019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67377,19 +67180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16615f4fd9aa496686de7e8755045b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CollisionComponent
---- !u!114 &8108656660715688021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927761259296903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _moveSpeed: 4.5
 --- !u!114 &8108656660715688022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67415,6 +67205,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.PushRequestComponent
+  _actionTime: 0.5
+  _fx: 10
+  _fy: 1
+  _radius: 1
+  _mask:
+    serializedVersion: 2
+    m_Bits: 2147484415
 --- !u!114 &8108656660715688024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67424,12 +67221,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 473927761259296903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24e0499cde4b169b9f64bc68c79fa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 65cad170c47441b59df3b0f0c70bd101, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseComponent
-  _actionTime: 0.15
-  _fx: 8
-  _fy: 8
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponent
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveRequired: 1
+  _moveDuration: 0.1
+  _moveTime: 0
+  _moveSpeed: 4.5
 --- !u!114 &8108656660715688025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67439,37 +67238,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 473927761259296903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cda89a9d66e4142bf83d0e5dc94c075, type: 3}
+  m_Script: {fileID: 11500000, guid: 48271d6bc5024b99a99384d06e2a3ded, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Monkey.EmemyPushInput
-  _impulseInterval: 1
-  impulseRequest: {fileID: 8108656660715688023}
---- !u!114 &8108656660715688026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927761259296903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
-  _damage: 1
---- !u!114 &8108656660715688027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473927761259296903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcde5e4ff6e3452fa007595821a5a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Components.ImpulseComponent.ImpulseCollideComponent
-  _impulseComponent: {fileID: 8108656660715688024}
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponentView
+  moveTransformComponent: {fileID: 8108656660715688024}
+  _animator: {fileID: 8580863070984089111}
 --- !u!4 &8140256848081144634
 Transform:
   m_ObjectHideFlags: 0
@@ -67523,9 +67296,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 611667586729565198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
   _damage: 1
 --- !u!1 &8183161329926949723
 GameObject:
@@ -67696,6 +67469,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseRequestComponent
+  _actionTime: 0.15
+  _fx: 1
+  _fy: 1
+  _radius: 2
+  _mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &8329134012361652465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67784,7 +67564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Monkey.EmemyImpulseInput
   _impulseInterval: 1
-  impulseRequest: {fileID: 8329134012361652463}
+  _nextImpulseTime: 0
+  impulse: {fileID: 8329134012361652463}
 --- !u!212 &8356448350736781946
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -68647,21 +68428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16615f4fd9aa496686de7e8755045b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CollisionComponent
---- !u!114 &8836661659935934904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685899152628074762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24e0499cde4b169b9f64bc68c79fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseComponent
-  _actionTime: 0.15
-  _fx: 8
-  _fy: 8
 --- !u!114 &8836661659935934905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68674,19 +68440,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.PushRequestComponent
---- !u!114 &8836661659935934906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685899152628074762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _moveSpeed: 1
+  _actionTime: 0.5
+  _fx: 10
+  _fy: 1
+  _radius: 1
+  _mask:
+    serializedVersion: 2
+    m_Bits: 2147484415
 --- !u!114 &8836661659935934907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68699,7 +68459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd8ed7bbf274eea99360b8b879f3cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.LookComponent
-  _charectorTransform: {fileID: 0}
+  _charectorTransform: {fileID: 5250976822473024921}
 --- !u!114 &8836661659935934908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68709,11 +68469,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3685899152628074762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cda89a9d66e4142bf83d0e5dc94c075, type: 3}
+  m_Script: {fileID: 11500000, guid: 65cad170c47441b59df3b0f0c70bd101, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Monkey.EmemyPushInput
-  _impulseInterval: 1
-  impulseRequest: {fileID: 8836661659935934905}
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponent
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveRequired: 1
+  _moveDuration: 0.1
+  _moveTime: 0
+  _moveSpeed: 4.5
 --- !u!114 &8836661659935934909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68723,23 +68486,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3685899152628074762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
+  m_Script: {fileID: 11500000, guid: 48271d6bc5024b99a99384d06e2a3ded, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
-  _damage: 1
---- !u!114 &8836661659935934910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3685899152628074762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcde5e4ff6e3452fa007595821a5a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Components.ImpulseComponent.ImpulseCollideComponent
-  _impulseComponent: {fileID: 8836661659935934904}
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponentView
+  moveTransformComponent: {fileID: 8836661659935934908}
+  _animator: {fileID: 4800857502822899610}
 --- !u!1 &8874620997591702959
 GameObject:
   m_ObjectHideFlags: 0
@@ -68901,6 +68652,7 @@ GameObject:
   - component: {fileID: 7827088335634897036}
   - component: {fileID: 8940468642287230361}
   - component: {fileID: 8940468642287230362}
+  - component: {fileID: 8940468642287230363}
   m_Layer: 8
   m_Name: Trap (13)
   m_TagString: Untagged
@@ -68938,6 +68690,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468642287230363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468642287230360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!1 &8940468642474369893
 GameObject:
   m_ObjectHideFlags: 0
@@ -68953,7 +68718,7 @@ GameObject:
   - component: {fileID: 1270545818335345532}
   - component: {fileID: 7827088335283136113}
   - component: {fileID: 8940468642474369894}
-  - component: {fileID: 8940468642474369895}
+  - component: {fileID: 8940468642474369896}
   m_Layer: 8
   m_Name: Trap (1)
   m_TagString: Untagged
@@ -68978,7 +68743,7 @@ MonoBehaviour:
   _damageSound: {fileID: 0}
   _damageColorComponent: {fileID: 7726137362565078270}
   _animator: {fileID: 0}
---- !u!114 &8940468642474369895
+--- !u!114 &8940468642474369896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68987,9 +68752,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8940468642474369893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
   _damage: 1
 --- !u!1 &8940468642627124918
 GameObject:
@@ -69007,6 +68772,7 @@ GameObject:
   - component: {fileID: 7827088335974529954}
   - component: {fileID: 8940468642627124919}
   - component: {fileID: 8940468642627124920}
+  - component: {fileID: 8940468642627124921}
   m_Layer: 8
   m_Name: Trap (3)
   m_TagString: Untagged
@@ -69044,6 +68810,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468642627124921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468642627124918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!1 &8940468643196655888
 GameObject:
   m_ObjectHideFlags: 0
@@ -69060,6 +68839,7 @@ GameObject:
   - component: {fileID: 7827088336477150212}
   - component: {fileID: 8940468643196655889}
   - component: {fileID: 8940468643196655890}
+  - component: {fileID: 8940468643196655891}
   m_Layer: 8
   m_Name: Trap (14)
   m_TagString: Untagged
@@ -69097,6 +68877,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468643196655891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468643196655888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!1 &8940468643201350118
 GameObject:
   m_ObjectHideFlags: 0
@@ -69113,6 +68906,7 @@ GameObject:
   - component: {fileID: 7827088336481910002}
   - component: {fileID: 8940468643201350119}
   - component: {fileID: 8940468643201350120}
+  - component: {fileID: 8940468643201350121}
   m_Layer: 8
   m_Name: Trap (12)
   m_TagString: Untagged
@@ -69150,6 +68944,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468643201350121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468643201350118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!1 &8940468643246438462
 GameObject:
   m_ObjectHideFlags: 0
@@ -69166,6 +68973,7 @@ GameObject:
   - component: {fileID: 7827088336524901674}
   - component: {fileID: 8940468643246438463}
   - component: {fileID: 8940468643246438464}
+  - component: {fileID: 8940468643246438465}
   m_Layer: 8
   m_Name: Trap (15)
   m_TagString: Untagged
@@ -69203,6 +69011,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468643246438465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468643246438462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!1 &8940468643258015458
 GameObject:
   m_ObjectHideFlags: 0
@@ -69219,6 +69040,7 @@ GameObject:
   - component: {fileID: 7827088336538442742}
   - component: {fileID: 8940468643258015459}
   - component: {fileID: 8940468643258015460}
+  - component: {fileID: 8940468643258015461}
   m_Layer: 8
   m_Name: Trap (4)
   m_TagString: Untagged
@@ -69256,6 +69078,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468643258015461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468643258015458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!1 &8940468643969131798
 GameObject:
   m_ObjectHideFlags: 0
@@ -69272,6 +69107,7 @@ GameObject:
   - component: {fileID: 7827088336779993090}
   - component: {fileID: 8940468643969131799}
   - component: {fileID: 8940468643969131800}
+  - component: {fileID: 8940468643969131801}
   m_Layer: 8
   m_Name: Trap (16)
   m_TagString: Untagged
@@ -69309,6 +69145,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468643969131801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468643969131798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!1 &8940468644019045765
 GameObject:
   m_ObjectHideFlags: 0
@@ -69325,6 +69174,7 @@ GameObject:
   - component: {fileID: 7827088336829644945}
   - component: {fileID: 8940468644019045766}
   - component: {fileID: 8940468644019045767}
+  - component: {fileID: 8940468644019045768}
   m_Layer: 8
   m_Name: Trap (2)
   m_TagString: Untagged
@@ -69362,6 +69212,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
   _damage: 1
+--- !u!114 &8940468644019045768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940468644019045765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b44aa3ea046cdb611a6c6555a0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Trap.Thorn
+  _damage: 1
 --- !u!4 &8956073846801023439
 Transform:
   m_ObjectHideFlags: 0
@@ -69371,7 +69234,7 @@ Transform:
   m_GameObject: {fileID: 9211836128205627613}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.14, y: 7.737, z: 0}
+  m_LocalPosition: {x: 45.14, y: 7.7549996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -69389,7 +69252,7 @@ Transform:
   m_GameObject: {fileID: 9211836127412553416}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.99, y: -0.287, z: 0}
+  m_LocalPosition: {x: 26.99, y: -0.26900035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -69427,6 +69290,7 @@ MonoBehaviour:
   _moveRequired: 0
   _moveDuration: 0.1
   _moveTime: 0.1
+  _moveSpeed: 4.5
 --- !u!114 &8974961780927055236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69440,21 +69304,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.JumpRequestComponent
   _jumpRequired: 0
-  _jumpDuration: 0.2
-  _jumpTime: 0.1
---- !u!114 &8974961780927055239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542159812194644840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
-  _damage: 1
+  _jumpDuration: 1
+  _jumpTime: 1
+  force: 12
+  _rigidbody2D: {fileID: 6962936837819257874}
 --- !u!1 &8988132346040627123
 GameObject:
   m_ObjectHideFlags: 0
@@ -69806,21 +69659,8 @@ MonoBehaviour:
   _jumpRequired: 0
   _jumpDuration: 0.1
   _jumpTime: 0
---- !u!114 &9087272483533179435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397315479776418722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24e0499cde4b169b9f64bc68c79fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.ImpulseComponent
-  _actionTime: 0.15
-  _fx: 20
-  _fy: 2
+  force: 300
+  _rigidbody2D: {fileID: 7281865940097660547}
 --- !u!114 &9087272483533179436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69833,60 +69673,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f71b44f20f448738f7aead0d4c585a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.ImpulseComponent.PushRequestComponent
---- !u!114 &9087272483533179437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397315479776418722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c01db736bf942048ce8743c82e3d153, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Monkey.EnemyJumpInput
-  _jumpInterval: 2
-  _jumpRequest: {fileID: 9087272483533179434}
---- !u!114 &9087272483533179438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397315479776418722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cda89a9d66e4142bf83d0e5dc94c075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Monkey.EmemyPushInput
-  _impulseInterval: 1
-  impulseRequest: {fileID: 9087272483533179436}
---- !u!114 &9087272483533179439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397315479776418722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e79fdf3d80a4b598ce97caab9574406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.HealthCollisionComponent
-  _damage: 10
---- !u!114 &9087272483533179440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397315479776418722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcde5e4ff6e3452fa007595821a5a245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Components.ImpulseComponent.ImpulseCollideComponent
-  _impulseComponent: {fileID: 9087272483533179435}
+  _actionTime: 0.3
+  _fx: 10
+  _fy: 1
+  _radius: 3
+  _mask:
+    serializedVersion: 2
+    m_Bits: 2147484671
 --- !u!4 &9104774897033685279
 Transform:
   m_ObjectHideFlags: 0
@@ -69954,19 +69747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16615f4fd9aa496686de7e8755045b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CollisionComponent
---- !u!114 &9111860641951361134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240930165034645272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b4c715012943db9fdf26735a9e7876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveTransformComponent
-  _moveSpeed: 2
 --- !u!114 &9111860641951361135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69993,6 +69773,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GameObjects.Content.Platform.Platform
   _patrolComponent: {fileID: 1822976849}
+--- !u!114 &9111860641951361137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240930165034645272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cad170c47441b59df3b0f0c70bd101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.MoveComponent
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _moveRequired: 0
+  _moveDuration: 0.1
+  _moveTime: 0
+  _moveSpeed: 4.5
 --- !u!4 &9119106903047687120
 Transform:
   m_ObjectHideFlags: 0

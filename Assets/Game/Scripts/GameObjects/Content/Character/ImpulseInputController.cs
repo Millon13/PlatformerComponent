@@ -5,7 +5,8 @@ namespace Game.ImpulseComponent
     public class ImpulseInputController : MonoBehaviour
     {
         [SerializeField] private GameObject _character;
-        [SerializeField] private KeyCode _impulse;
+        [SerializeField] private KeyCode _push;
+        [SerializeField] private KeyCode _toss;
 
         private void Update()
         {
@@ -14,8 +15,10 @@ namespace Game.ImpulseComponent
 
         private void HandleKeyboard()
         {
-            if (Input.GetKey(_impulse))
-                _character.GetComponent<ImpulseRequestComponent>().Impulse();
+            if (Input.GetKeyDown(_push))
+                _character.GetComponent<IPushComponent>().Push();
+            if (Input.GetKeyDown(_toss))
+                _character.GetComponent<ITossComponent>().Toss();
         }
     }
 }

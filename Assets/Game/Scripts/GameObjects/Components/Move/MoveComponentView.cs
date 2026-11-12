@@ -1,31 +1,32 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game
 {
-    public class MoveTransformComponentView : MonoBehaviour
+    public class MoveComponentView : MonoBehaviour
     {
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-        [SerializeField] private MoveRequestComponent _moveComponent;
+        [SerializeField] private MoveComponent moveTransformComponent;
 
         [SerializeField] private Animator _animator;
 
         private void Awake()
         {
-            _moveComponent = GetComponent<MoveRequestComponent>();
+            moveTransformComponent = GetComponent<MoveComponent>();
         }
 
         private void OnEnable()
         {
-            _moveComponent.OnMoving += OnMove;
+            moveTransformComponent.OnMoving += OnMoveTransform;
         }
 
         private void OnDisable()
         {
-            _moveComponent.OnMoving -= OnMove;
+            moveTransformComponent.OnMoving -= OnMoveTransform;
         }
 
-        private void OnMove(bool isMoving)
+        private void OnMoveTransform(bool isMoving)
         {
             _animator.SetBool(IsMoving, isMoving);
         }
