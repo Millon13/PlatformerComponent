@@ -1,8 +1,6 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Move
 {
     public class MoveComponentView : MonoBehaviour
     {

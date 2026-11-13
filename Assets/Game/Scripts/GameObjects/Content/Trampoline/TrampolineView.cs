@@ -1,8 +1,9 @@
+using DG.Tweening;
+using Game.Scripts.GameObjects.Components.Physics;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using DG.Tweening;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Content.Trampoline
 {
     public sealed class TrampolineView : MonoBehaviour
     {

@@ -1,13 +1,17 @@
 ﻿using System;
+using Game.Scripts.GameObjects.Components.Move;
 using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.ControlComponent
 {
     public class PatrolComponent : MonoBehaviour
     {
         [SerializeField] private MoveComponent _moveTransform;
+        
         [SerializeField] private Transform _point1;
+        
         [SerializeField] private Transform _point2;
+        
         [SerializeField] private float _speed = 2f;
 
         public event Action<bool> OnPatrolChanged;
@@ -26,7 +30,9 @@ namespace Game
         }
 
         private Transform _currentTarget;
+        
         private Vector3 currentTarget;
+        
         private bool _wasPatrolling;
 
         private void Awake()
@@ -50,21 +56,11 @@ namespace Game
         {
             if (!CanPatrol || target == null) return;
 
-            bool arrived = _moveTransform.MoveTowards(target.position, _speed);
-            if (arrived)
+            Vector3 dir = (target.position - _moveTransform.transform.position).normalized;
+            _moveTransform.Move(dir);
+
+            if ((target.position - _moveTransform.transform.position).sqrMagnitude < 0.05f * 0.05f)
                 _currentTarget = target == _point1 ? _point2 : _point1;
         }
-        /*public void Patrol(Vector3 direction)
-        {
-            if (!CanPatrol) return;
-            
-            Vector3 targetPosition = _moveTransform.gameObject.transform.position + direction;
-
-            bool arrived = _moveTransform.MoveTowards(targetPosition, _speed);
-            if (arrived)
-            {
-                currentTarget = targetPosition;
-            }
-        }*/
     }
 }

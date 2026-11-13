@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Physics
 {
     public sealed class TriggerComponent : MonoBehaviour
     {

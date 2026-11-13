@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Jump
 {
     public class JumpComponent : MonoBehaviour
     {
@@ -27,10 +27,13 @@ namespace Game
         [SerializeField] private float _jumpDuration = 0.1f;
 
         [SerializeField] private float _jumpTime;
+
         public Action<bool> OnJump;
+
         [SerializeField] private float force;
 
         [SerializeField] Rigidbody2D _rigidbody2D;
+
         public void Jump()
         {
             _jumpRequired = true;
@@ -47,7 +50,7 @@ namespace Game
 
             _jumpRequired = false;
         }
-      
+
 
         public void TryJump()
         {

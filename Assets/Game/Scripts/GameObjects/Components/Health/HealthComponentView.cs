@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Health
 {
     public class HealthComponentView : MonoBehaviour
     {
@@ -48,6 +47,6 @@ namespace Game
             if (_animator != null)
                 _animator.SetTrigger("Death");
             this.gameObject.SetActive(false);
-         }
+        }
     }
 }

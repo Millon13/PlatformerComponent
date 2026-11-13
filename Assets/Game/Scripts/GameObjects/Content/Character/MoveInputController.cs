@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.GameObjects.Components.Move;
+using UnityEngine;
 
 namespace Game.Scripts.GameObjects.Content.Character
 {

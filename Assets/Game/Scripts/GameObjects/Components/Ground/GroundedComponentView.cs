@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Ground
 {
     public class GroundedComponentView : MonoBehaviour
     {

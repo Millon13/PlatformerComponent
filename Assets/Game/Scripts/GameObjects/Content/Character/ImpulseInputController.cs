@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
-namespace Game.ImpulseComponent
+namespace Game.Scripts.GameObjects.Content.Character
 {
     public class ImpulseInputController : MonoBehaviour
     {
         [SerializeField] private GameObject _character;
+        
         [SerializeField] private KeyCode _push;
+        
         [SerializeField] private KeyCode _toss;
 
         private void Update()

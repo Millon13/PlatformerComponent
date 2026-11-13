@@ -1,12 +1,10 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Move
 {
     public class MoveComponent : MonoBehaviour
     {
-        
         public interface IAction
         {
             void Invoke(Vector3 direction);
@@ -31,8 +29,9 @@ namespace Game
         [SerializeField] private float _moveTime;
 
         private IAction _moveAction;
-        private ICondition _condition;
         
+        private ICondition _condition;
+
         [SerializeField] private float _moveSpeed = 4.5f;
 
         public void MoveStep(Vector3 moveDirection)
@@ -47,7 +46,7 @@ namespace Game
                 target,
                 speed * Time.fixedDeltaTime
             );
-            return (transform.position - target).sqrMagnitude <= arriveThreshold*arriveThreshold;
+            return (transform.position - target).sqrMagnitude <= arriveThreshold * arriveThreshold;
         }
 
         public void SetAction(IAction action) => _moveAction = action;

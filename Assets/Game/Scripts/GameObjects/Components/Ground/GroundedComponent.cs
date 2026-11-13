@@ -1,8 +1,8 @@
 using System;
-using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Ground
 {
     [Serializable]
     public sealed class GroundedComponent : MonoBehaviour

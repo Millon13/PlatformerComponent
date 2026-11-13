@@ -1,6 +1,7 @@
+using Game.Scripts.GameObjects.Components.Physics;
 using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Content.Trampoline
 {
     public sealed class Trampoline : MonoBehaviour
     {

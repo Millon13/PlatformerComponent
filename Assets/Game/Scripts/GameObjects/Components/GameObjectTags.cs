@@ -1,4 +1,4 @@
-namespace Game
+namespace Game.Scripts.GameObjects.Components
 {
     public static class GameObjectTags
     {

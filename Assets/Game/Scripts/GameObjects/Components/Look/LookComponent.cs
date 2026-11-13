@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Look
 {
     public sealed class LookComponent : MonoBehaviour
     {

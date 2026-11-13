@@ -1,11 +1,12 @@
-﻿using Game.ImpulseComponent;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.ImpulseComponent
 {
     public class ImpulseComponentView : MonoBehaviour
     {
-        [SerializeField] private ImpulseComponent.ImpulseComponent _tossComponent;
+        [SerializeField] private string _animatorBoolName;
+        
+        [SerializeField] private Scripts.GameObjects.Components.ImpulseComponent.ImpulseComponent _impulseComponent;
 
         [SerializeField] private Animator _animator;
 
@@ -17,25 +18,25 @@ namespace Game
 
         private void Awake()
         {
-            if (_tossComponent == null)
-                _tossComponent = GetComponent<ImpulseComponent.ImpulseComponent>();
+            if (_impulseComponent == null)
+                _impulseComponent = GetComponent<Scripts.GameObjects.Components.ImpulseComponent.ImpulseComponent>();
         }
 
         private void OnEnable()
         {
-            _tossComponent.OnImpulse += OnToss;
+            _impulseComponent.OnImpulse += OnToss;
         }
 
         private void OnDisable()
         {
-            _tossComponent.OnImpulse -= OnToss;
+            _impulseComponent.OnImpulse -= OnToss;
         }
 
-        private void OnToss(bool isTossed)
+        private void OnToss(bool isImpulsed)
         {
             if (_particleSystem != null)
                 _particleSystem.Play();
-            _animator.SetBool("BlowUp", isTossed);
+            _animator.SetBool(_animatorBoolName, isImpulsed);
             _audioSource.PlayOneShot(_tossSound);
         }
     }

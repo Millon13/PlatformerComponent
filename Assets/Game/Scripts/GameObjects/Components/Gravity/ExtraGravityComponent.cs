@@ -1,6 +1,7 @@
+using Game.Scripts.GameObjects.Components.Ground;
 using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Gravity
 {
     [RequireComponent(typeof(GroundedComponent), typeof(Rigidbody2D))]
     public sealed class ExtraGravityComponent : MonoBehaviour

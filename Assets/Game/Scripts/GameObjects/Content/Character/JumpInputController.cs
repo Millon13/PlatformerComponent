@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.GameObjects.Components.Jump;
+using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Content.Character
 {
     public class JumpInputController : MonoBehaviour
     {

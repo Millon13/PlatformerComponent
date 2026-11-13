@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Physics
 {
     public sealed class CollisionComponent : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game
+namespace Game.Scripts.GameObjects.Components.Jump
 {
     public class JumpComponentView : MonoBehaviour
 
